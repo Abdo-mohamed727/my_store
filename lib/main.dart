@@ -1,19 +1,21 @@
-import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:my_store/core/app/env_variables.dart';
+import 'package:my_store/firebase_options.dart';
 import 'package:my_store/my_store_app.dart';
 
-void main()async {
-WidgetsFlutterBinding.ensureInitialized();
-Platform.isAndroid ?
-await Firebase.initializeApp(
-  options: FirebaseOptions(apiKey: "AIzaSyDjPUrSjEVldWvg1yHPcA_IE0Nbeck6xDg", appId: "1:770837074012:android:ccb724723e41fb60cfd699", messagingSenderId:  "770837074012", projectId:  "e-commerce-ea47b")
-):await Firebase.initializeApp();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MyApp());
+  await EnvVariables.instance.init(envtype: EnumEnvTypes.dev);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(const MyApp());
+  });
 }
-
-
-
- 
