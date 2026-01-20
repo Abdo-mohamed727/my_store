@@ -28,10 +28,10 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - .env.dev 
+    - .env.dev
     - .env.prod
+    - assets/images/core/
   # An image asset can refer to one or more resolution-specific "variants", see
- 
   # fonts:
   #   - family: Schyler
   #     fonts:
