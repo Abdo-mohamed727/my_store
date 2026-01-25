@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/app/connectivity_controller.dart';
 import 'package:my_store/core/app/screens/check_network.dart';
+import 'package:my_store/core/routes/app_routes.dart';
 import 'package:my_store/features/login/presintation/screens/login_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
             designSize: Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: ThemeData(
                 colorScheme: .fromSeed(seedColor: Colors.deepPurple),
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
                   ),
                 );
               },
-              home: const LoginPage(),
+              onGenerateRoute: AppRoutes.onGenerateRoute,
+              initialRoute: AppRoutes.loginpage,
             ),
           );
         } else {
