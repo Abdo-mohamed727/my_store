@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/app/connectivity_controller.dart';
 import 'package:my_store/core/app/screens/check_network.dart';
 import 'package:my_store/features/login/presintation/screens/login_page.dart';
@@ -12,29 +13,30 @@ class MyApp extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, _) {
         if (value) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-            ),
-            builder: (context, widget) {
-              return Scaffold(
-                body: Builder(
-                  builder: (context) {
-                    ConnectivityController.instance.init();
+          return ScreenUtilInit(
+            designSize: Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+              ),
+              builder: (context, widget) {
+                return Scaffold(
+                  body: Builder(
+                    builder: (context) {
+                      ConnectivityController.instance.init();
 
-                    return widget!;
-                  },
-                ),
-              );
-            },
-            home: const LoginPage(),
+                      return widget!;
+                    },
+                  ),
+                );
+              },
+              home: const LoginPage(),
+            ),
           );
         } else {
-          return const MaterialApp(
-            title: 'no network',
-            home: CheckNetwork(),
-          );
+          return const MaterialApp(title: 'no network', home: CheckNetwork());
         }
       },
     );
