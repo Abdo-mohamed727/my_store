@@ -7,15 +7,20 @@ import 'package:my_store/my_store_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await EnvVariables.instance.init(envtype: EnumEnvTypes.dev);
 
-  await EnvVariables.instance.init(envtype: EnumEnvTypes.dev);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e, st) {
+    debugPrint(st.toString());
+  }
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
-  ]).then((_) {
-    runApp(const MyApp());
-  });
+  ]);
+
+  runApp(const MyApp());
 }
