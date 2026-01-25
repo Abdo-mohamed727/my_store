@@ -15,8 +15,19 @@ dependencies:
     sdk: flutter
   flutter_dotenv: ^6.0.0
   flutter_launcher_icons: ^0.14.4
-  flutter_screenutil: ^5.9.3
-  very_good_analysis: ^10.0.0
+
+  
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icons/app_icon.jpg"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/icons/play_store_512.png"
+
+
+flutter_screenutil: ^5.9.3
+very_good_analysis: ^10.0.0
 
 dev_dependencies:
   flutter_lints: ^6.0.0
@@ -24,10 +35,13 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+   
 
-  uses-material-design: true
+
+
+uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  assets:
+assets:
     - .env.dev
     - .env.prod
     - assets/images/core/
