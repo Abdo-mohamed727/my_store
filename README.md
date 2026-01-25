@@ -1,16 +1,12 @@
 # my_store
 
-A new Flutter project.
+ 
+Store App is a modern e-commerce mobile application built using Flutter.
+The app allows users to browse products, view detailed information, add items to the cart, and manage their shopping experience with a smooth and responsive UI.
 
-## Getting Started
+The project follows clean code principles and reusable widgets, making it easy to scale and maintain. It focuses on performance, user experience, and modern Flutter best practices.
 
-This project is a starting point for a Flutter application.
+ 
+# ✅ Splash Screen
+<img width="960" height="2022" alt="image" src="https://github.com/user-attachments/assets/edfae537-492d-41da-96c8-95e017ebda7f" />
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
