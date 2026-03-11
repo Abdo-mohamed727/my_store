@@ -5,10 +5,8 @@ class UndarBuilderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Image(
-        image: AssetImage('assets\images\core\page_under_build.jpg'),
-      ),
+    return const Image(
+      image: AssetImage('assets/images/core/page_under_build.jpg'),
     );
   }
 }

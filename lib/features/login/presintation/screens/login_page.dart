@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_store/core/app/style/font_family.dart';
 import 'package:my_store/core/app/style/font_weight.dart';
+import 'package:my_store/core/extensions/context_extensions.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -18,6 +19,7 @@ class LoginPage extends StatelessWidget {
                 fontWeight: FontWeightHelper.bold,
                 fontFamily: FontFamily.poppinsEnglish,
                 fontSize: 30,
+                color: context.myColors.fontColor,
               ),
             ),
           ),
@@ -27,6 +29,7 @@ class LoginPage extends StatelessWidget {
               fontFamily: FontFamily.cairoArabic,
               fontWeight: FontWeightHelper.bold,
               fontSize: 20,
+              color: context.myColors.fontColor,
             ),
           ),
         ],

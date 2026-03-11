@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/app/connectivity_controller.dart';
 import 'package:my_store/core/app/screens/check_network.dart';
 import 'package:my_store/core/routes/app_routes.dart';
+import 'package:my_store/core/style/theme/app_theme.dart';
 import 'package:my_store/features/login/presintation/screens/login_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,14 +16,12 @@ class MyApp extends StatelessWidget {
       builder: (_, value, _) {
         if (value) {
           return ScreenUtilInit(
-            designSize: Size(375, 812),
+            designSize: const Size(375, 812),
             minTextAdapt: true,
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
-              theme: ThemeData(
-                colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-              ),
+              theme: themeDark(),
               builder: (context, widget) {
                 return Scaffold(
                   body: Builder(
