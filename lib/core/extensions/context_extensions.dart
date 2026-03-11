@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/core/style/theme/color_extension.dart';
 
 extension ContextExt on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? args}) {
@@ -16,4 +17,8 @@ extension ContextExt on BuildContext {
       this,
     ).pushNamedAndRemoveUntil(routeName, (route) => false, arguments: args);
   }
+
+  //colors
+
+  MyColors get myColors => Theme.of(this).extension<MyColors>()!;
 }
