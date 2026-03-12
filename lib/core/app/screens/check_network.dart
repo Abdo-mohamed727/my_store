@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_store/core/app/style/images.dart';
+import 'package:my_store/core/app/images.dart';
 
 class CheckNetwork extends StatelessWidget {
   const CheckNetwork({super.key});

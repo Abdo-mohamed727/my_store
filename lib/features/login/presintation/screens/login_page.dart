@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_store/core/app/style/font_family.dart';
-import 'package:my_store/core/app/style/font_weight.dart';
+import 'package:my_store/core/app/language/lang_keys.dart';
+import 'package:my_store/core/style/fonts/font_family.dart';
+import 'package:my_store/core/style/fonts/font_weight.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class LoginPage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              'My Store',
+              context.translate(LangKeys.appName) ?? 'My Store',
               style: TextStyle(
                 fontWeight: FontWeightHelper.bold,
                 fontFamily: FontFamily.poppinsEnglish,
