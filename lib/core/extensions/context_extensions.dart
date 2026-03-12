@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/core/app/language/app_localizations.dart';
 import 'package:my_store/core/style/theme/color_extension.dart';
 
 extension ContextExt on BuildContext {
@@ -21,4 +22,8 @@ extension ContextExt on BuildContext {
   //colors
 
   MyColors get myColors => Theme.of(this).extension<MyColors>()!;
+
+  //language
+  String? translate(String key) =>
+      AppLocalizations.of(this)?.translate(key).toString();
 }
