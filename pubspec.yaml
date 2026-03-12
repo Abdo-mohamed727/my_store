@@ -42,6 +42,10 @@ flutter:
     - assets/images/core/
     - lang/ar.json
     - lang/en.json
+    - assets/svg/
+    - assets/images/admin/
+    - assets/images/coustomer/
+    - assets/images/icons/
   fonts:
     - family: Cairo
       fonts:

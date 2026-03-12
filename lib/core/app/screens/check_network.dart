@@ -11,7 +11,7 @@ class CheckNetwork extends StatelessWidget {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.networkerror),
+            image: AssetImage(AppImages.noNetwork),
             fit: BoxFit.fill,
           ),
         ),
