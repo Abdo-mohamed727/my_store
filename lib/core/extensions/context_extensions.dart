@@ -26,4 +26,10 @@ extension ContextExt on BuildContext {
   //language
   String? translate(String key) =>
       AppLocalizations.of(this)?.translate(key).toString();
+
+  //text style
+  TextStyle get textStyle => Theme.of(this).textTheme.bodyMedium!;
+  TextStyle get titleMedium => Theme.of(this).textTheme.titleMedium!;
+  TextStyle get titleSmall => Theme.of(this).textTheme.titleSmall!;
+  TextStyle get bodySmall => Theme.of(this).textTheme.bodySmall!;
 }
