@@ -5,8 +5,11 @@ import 'package:my_store/core/app/widgets/text_app.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
 import 'package:my_store/core/style/fonts/font_weight.dart';
 
-class TextLoginWelcome extends StatelessWidget {
-  const TextLoginWelcome({super.key});
+class TextWelcome extends StatelessWidget {
+  const TextWelcome({required this.text, super.key, this.subText});
+
+  final String? text;
+  final String? subText;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class TextLoginWelcome extends StatelessWidget {
       child: Column(
         children: [
           TextApp(
-            text: context.translate(LangKeys.login),
+            text: text,
             theme: context.textStyle.copyWith(
               color: Colors.white,
               fontSize: 28,
@@ -23,7 +26,7 @@ class TextLoginWelcome extends StatelessWidget {
           ),
           TextApp(
             textAlign: TextAlign.center,
-            text: context.translate(LangKeys.welcome),
+            text: subText ?? context.translate(LangKeys.welcome),
             theme: context.textStyle.copyWith(
               color: Colors.white,
               fontSize: 18,

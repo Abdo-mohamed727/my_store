@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
-import 'package:my_store/features/auth/refactors/login_body.dart';
 import 'package:my_store/features/auth/presintation/widgets/coustom_painter.dart';
+import 'package:my_store/features/auth/refactors/sign_up_body.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomPaint(
-        size: Size(double.infinity, 150.h),
+        size: Size(double.infinity, 150),
         painter: AuthCustomPainter(
           gradient: LinearGradient(
             colors: [
@@ -23,7 +22,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-      body: LoginBody(),
+      body: SignUpBody(),
     );
   }
 }
