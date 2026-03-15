@@ -12,9 +12,14 @@ import 'package:my_store/features/auth/presintation/widgets/language_and_theme_m
 import 'package:my_store/features/auth/presintation/widgets/login_button.dart';
 import 'package:my_store/features/auth/presintation/widgets/text_login_welcome.dart';
 
-class LoginBody extends StatelessWidget {
+class LoginBody extends StatefulWidget {
   LoginBody({super.key});
 
+  @override
+  State<LoginBody> createState() => _LoginBodyState();
+}
+
+class _LoginBodyState extends State<LoginBody> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
