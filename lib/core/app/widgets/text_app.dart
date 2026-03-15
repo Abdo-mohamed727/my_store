@@ -10,7 +10,7 @@ class TextApp extends StatelessWidget {
     this.textAlign,
     super.key,
   });
-  final String text;
+  final String? text;
   final TextStyle theme;
   final int? maxLines;
   final bool? softWrap;
@@ -20,7 +20,7 @@ class TextApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       softWrap: softWrap,
       style: theme,
       overflow: textOverflow,
