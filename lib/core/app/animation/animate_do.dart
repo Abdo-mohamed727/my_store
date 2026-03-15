@@ -16,6 +16,7 @@ class CoustomFadeInDown extends StatelessWidget {
     return FadeInDown(
       delay: const Duration(milliseconds: 300),
       duration: Duration(milliseconds: duration ?? 1000),
+
       child: child,
     );
   }
@@ -35,6 +36,7 @@ class CoustomFadeInUp extends StatelessWidget {
     return FadeInUp(
       delay: const Duration(milliseconds: 300),
       duration: Duration(milliseconds: duration ?? 1000),
+
       child: child,
     );
   }
