@@ -8,16 +8,18 @@ environment:
   sdk: ^3.10.1
 
 dependencies:
+  animate_do: ^4.2.0
+
   connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
   firebase_core: ^4.4.0
   flutter:
 
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
   flutter_dotenv: ^6.0.0
   flutter_launcher_icons: ^0.14.4
+  flutter_localizations:
+    sdk: flutter
   flutter_native_splash: ^2.4.7
   flutter_screenutil: ^5.9.3
 
@@ -42,6 +44,10 @@ flutter:
     - assets/images/core/
     - lang/ar.json
     - lang/en.json
+    - assets/svg/
+    - assets/images/admin/
+    - assets/images/customer/
+    - assets/images/icons/
   fonts:
     - family: Cairo
       fonts:

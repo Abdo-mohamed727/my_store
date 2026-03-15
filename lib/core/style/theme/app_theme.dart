@@ -4,7 +4,7 @@ import 'package:my_store/core/style/theme/color_extension.dart';
 
 ThemeData themeDark() {
   return ThemeData(
-    scaffoldBackgroundColor: ColorsDark.primaryColor,
+    scaffoldBackgroundColor: ColorsDark.mainColor,
     extensions: const <ThemeExtension<dynamic>>[MyColors.dark],
     useMaterial3: true,
   );

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: themeDark(),
-              locale: const Locale('ar'),
+              locale: const Locale('en'),
               localizationsDelegates:
                   AppLocalizationsSetup.localizationsDelegates,
               supportedLocales: AppLocalizationsSetup.supportedLocales,
