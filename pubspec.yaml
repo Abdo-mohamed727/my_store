@@ -23,6 +23,8 @@ dependencies:
   flutter_native_splash: ^2.4.7
   flutter_screenutil: ^5.9.3
   freezed_annotation: ^3.1.0
+  flutter_bloc: ^9.1.1
+
 
 flutter_launcher_icons:
   android: true
@@ -32,8 +34,8 @@ flutter_launcher_icons:
   adaptive_icon_foreground: "assets/images/icons/play_store_512.png"
 
 dev_dependencies:
+  bloc: ^9.2.0
   build_runner: ^2.12.2
-  flutter_bloc: ^9.1.1
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter

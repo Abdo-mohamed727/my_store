@@ -19,7 +19,7 @@ class TextWelcome extends StatelessWidget {
           TextApp(
             text: text,
             theme: context.textStyle.copyWith(
-              color: Colors.white,
+              color: context.myColors.textColor,
               fontSize: 28,
               fontWeight: FontWeightHelper.bold,
             ),
@@ -28,8 +28,8 @@ class TextWelcome extends StatelessWidget {
             textAlign: TextAlign.center,
             text: subText ?? context.translate(LangKeys.welcome),
             theme: context.textStyle.copyWith(
-              color: Colors.white,
               fontSize: 18,
+              color: context.myColors.textColor,
               fontWeight: FontWeightHelper.mediaum,
             ),
           ),
