@@ -9,6 +9,10 @@ environment:
 
 dependencies:
   animate_do: ^4.2.0
+  dio: ^5.9.2
+  retrofit: ^4.9.2
+
+
 
   connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
@@ -16,6 +20,7 @@ dependencies:
   flutter:
 
     sdk: flutter
+  flutter_bloc: ^9.1.1
   flutter_dotenv: ^6.0.0
   flutter_launcher_icons: ^0.14.4
   flutter_localizations:
@@ -23,8 +28,6 @@ dependencies:
   flutter_native_splash: ^2.4.7
   flutter_screenutil: ^5.9.3
   freezed_annotation: ^3.1.0
-  flutter_bloc: ^9.1.1
-
 
 flutter_launcher_icons:
   android: true
@@ -41,6 +44,9 @@ dev_dependencies:
     sdk: flutter
   freezed: ^3.2.5
   get_it: ^9.2.1
+  json_serializable: ^6.13.1
+  pretty_dio_logger: ^1.4.0
+  retrofit_generator: ^10.2.3
   shared_preferences: ^2.5.4
   very_good_analysis: ^10.0.0
 

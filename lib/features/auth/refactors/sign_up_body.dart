@@ -29,22 +29,22 @@ class _SignUpBodyState extends State<SignUpBody> {
         child: Column(
           children: [
             LanguageAndThemeButtons(),
-            SizedBox(height: 30.h),
+            SizedBox(height: 15.h),
             TextWelcome(
               text: context.translate(LangKeys.signUp),
               subText: context.translate(LangKeys.signUpWelcome),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
             const UserAvatarImage(),
-            SizedBox(height: 30.h),
+            SizedBox(height: 20.h),
             SignUpFormField(
               nameController: nameController,
               emailController: emailController,
               passwordController: passwordController,
             ),
-            SizedBox(height: 40.h),
-            const SignUpButton(),
             SizedBox(height: 20.h),
+            const SignUpButton(),
+            SizedBox(height: 10.h),
             TextButton(
               onPressed: () {
                 context.pushReplacementNamed(AppRoutes.loginpage);
