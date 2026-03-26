@@ -7,7 +7,10 @@ part of 'user_role_response.dart';
 // **************************************************************************
 
 UserRoleResponse _$UserRoleResponseFromJson(Map<String, dynamic> json) =>
-    UserRoleResponse(json['role'] as String?);
+    UserRoleResponse(
+      userRole: json['role'] as String?,
+      userId: (json['id'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$UserRoleResponseToJson(UserRoleResponse instance) =>
-    <String, dynamic>{'role': instance.userRole};
+    <String, dynamic>{'role': instance.userRole, 'id': instance.userId};

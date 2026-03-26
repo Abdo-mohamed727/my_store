@@ -21,10 +21,10 @@ Map<String, dynamic> _$LoginDataModelToJson(LoginDataModel instance) =>
     <String, dynamic>{'login': instance.login};
 
 LoginModel _$LoginModelFromJson(Map<String, dynamic> json) =>
-    LoginModel(json['accessToken'] as String, json['refreshToken'] as String);
+    LoginModel(json['access_token'] as String, json['refresh_token'] as String);
 
 Map<String, dynamic> _$LoginModelToJson(LoginModel instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
+      'access_token': instance.accessToken,
+      'refresh_token': instance.refreshToken,
     };
