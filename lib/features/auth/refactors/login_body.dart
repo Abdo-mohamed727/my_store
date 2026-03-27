@@ -20,29 +20,22 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 70),
       child: Column(
         children: [
-          LanguageAndThemeButtons(),
+          const LanguageAndThemeButtons(),
           SizedBox(height: 40.h),
           TextWelcome(
             text: context.translate(LangKeys.login),
           ),
 
           SizedBox(height: 50.h),
-          EmailAndPassFormField(
-            emailController: emailController,
-            passwordController: passwordController,
-          ),
+          const EmailAndPassFormField(),
           SizedBox(height: 40.h),
-          LoginButton(),
+          const LoginButton(),
           SizedBox(height: 40.h),
           CoustomFadeInUp(
             duration: 1300,

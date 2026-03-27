@@ -20,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo authRepo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   FutureOr<void> _login(AuthEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
@@ -43,7 +44,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.success(userRole: user.userRole ?? ''));
       },
       failure: (failure) {
-        emit(const AuthState.error());
+        emit(AuthState.error(message: failure));
       },
     );
   }
