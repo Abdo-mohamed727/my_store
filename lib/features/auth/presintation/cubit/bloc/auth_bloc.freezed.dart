@@ -358,12 +358,12 @@ return success(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  error,TResult Function( String userRole)?  success,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( String message)?  error,TResult Function( String userRole)?  success,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case LoadingState() when loading != null:
 return loading();case ErrorState() when error != null:
-return error();case SuccessState() when success != null:
+return error(_that.message);case SuccessState() when success != null:
 return success(_that.userRole);case _:
   return orElse();
 
@@ -382,12 +382,12 @@ return success(_that.userRole);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  error,required TResult Function( String userRole)  success,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( String message)  error,required TResult Function( String userRole)  success,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case LoadingState():
 return loading();case ErrorState():
-return error();case SuccessState():
+return error(_that.message);case SuccessState():
 return success(_that.userRole);case _:
   throw StateError('Unexpected subclass');
 
@@ -405,12 +405,12 @@ return success(_that.userRole);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  error,TResult? Function( String userRole)?  success,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( String message)?  error,TResult? Function( String userRole)?  success,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case LoadingState() when loading != null:
 return loading();case ErrorState() when error != null:
-return error();case SuccessState() when success != null:
+return error(_that.message);case SuccessState() when success != null:
 return success(_that.userRole);case _:
   return null;
 
@@ -487,33 +487,67 @@ String toString() {
 
 
 class ErrorState implements AuthState {
-  const ErrorState();
+  const ErrorState({required this.message});
   
 
+ final  String message;
 
-
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ErrorStateCopyWith<ErrorState> get copyWith => _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ErrorState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ErrorState&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'AuthState.error()';
+  return 'AuthState.error(message: $message)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $ErrorStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory $ErrorStateCopyWith(ErrorState value, $Res Function(ErrorState) _then) = _$ErrorStateCopyWithImpl;
+@useResult
+$Res call({
+ String message
+});
 
 
+
+
+}
+/// @nodoc
+class _$ErrorStateCopyWithImpl<$Res>
+    implements $ErrorStateCopyWith<$Res> {
+  _$ErrorStateCopyWithImpl(this._self, this._then);
+
+  final ErrorState _self;
+  final $Res Function(ErrorState) _then;
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+  return _then(ErrorState(
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
