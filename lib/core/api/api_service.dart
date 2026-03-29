@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:my_store/core/upload_image/models/upload_image_response.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
+import 'package:my_store/features/auth/data/models/sign_up_response.dart';
 import 'package:my_store/features/auth/data/models/user_role_response.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -18,4 +21,10 @@ abstract class ApiService {
 
   @GET('/api/v1/auth/profile')
   Future<UserRoleResponse> userRole();
+
+  @POST('/api/v1/files/upload')
+  Future<UploadImageResponse> uploadImage(@Body() FormData image);
+
+  @POST(graphQl)
+  Future<SignUpResponse> signUp(@Body() Map<String, dynamic> signUpBody);
 }

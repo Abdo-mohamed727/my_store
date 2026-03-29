@@ -2,6 +2,8 @@ import 'package:my_store/core/api/api_result.dart';
 import 'package:my_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:my_store/features/auth/data/models/login_request_body.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
+import 'package:my_store/features/auth/data/models/sign_up_request_body.dart';
+import 'package:my_store/features/auth/data/models/sign_up_response.dart';
 import 'package:my_store/features/auth/data/models/user_role_response.dart';
 
 class AuthRepo {
@@ -24,6 +26,15 @@ class AuthRepo {
       return response;
     } on Exception catch (error) {
       throw Exception(error.toString());
+    }
+  }
+
+  Future<ApiResult<SignUpResponse>> signup(SignUpRequestBody data) async {
+    try {
+      final response = await authDataSource.signUp(data: data);
+      return ApiResult.success(response);
+    } on Exception catch (error) {
+      return ApiResult.failure(error.toString());
     }
   }
 }
