@@ -18,9 +18,6 @@ class SignUpBody extends StatefulWidget {
 }
 
 class _SignUpBodyState extends State<SignUpBody> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,11 +34,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             SizedBox(height: 10.h),
             const UserAvatarImage(),
             SizedBox(height: 20.h),
-            SignUpFormField(
-              nameController: nameController,
-              emailController: emailController,
-              passwordController: passwordController,
-            ),
+            SignUpFormField(),
             SizedBox(height: 20.h),
             const SignUpButton(),
             SizedBox(height: 10.h),

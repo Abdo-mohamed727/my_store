@@ -36,6 +36,7 @@ class AppRoutes {
           page: MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => sl<UploadImageCubit>()),
+              BlocProvider(create: (context) => sl<AuthBloc>()),
             ],
             child: const SignUpPage(),
           ),

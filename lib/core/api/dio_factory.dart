@@ -18,12 +18,15 @@ class DioFactory {
       dio = Dio();
       dio!
         ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut
-        ..options.headers['Authorization'] =
-            'Bearer ${SharedPref().getString(ShareKeys.accesstoken)}';
+        ..options.receiveTimeout = timeOut;
+
+      final token = SharedPref().getString(ShareKeys.accesstoken);
+      if (token != null && token.isNotEmpty) {
+        dio!.options.headers['Authorization'] = 'Bearer $token';
+      }
 
       debugPrint(
-        "[USER Token] ====> ${SharedPref().getString(ShareKeys.accesstoken) ?? 'NULL TOKEN'}",
+        "[USER Token] ====> ${token ?? 'NULL TOKEN'}",
       );
 
       addDioInterceptor();
@@ -40,5 +43,19 @@ class DioFactory {
         compact: false,
       ),
     );
+  }
+
+  static void updateAuthToken(String token) {
+    if (dio != null) {
+      dio!.options.headers['Authorization'] = 'Bearer $token';
+      debugPrint("[USER Token Updated] ====> $token");
+    }
+  }
+
+  static void clearAuthToken() {
+    if (dio != null) {
+      dio!.options.headers.remove('Authorization');
+      debugPrint("[USER Token Cleared]");
+    }
   }
 }
