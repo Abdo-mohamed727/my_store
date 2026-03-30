@@ -4,7 +4,7 @@ import 'package:my_store/core/app/di/injection_container.dart';
 import 'package:my_store/core/app/screens/undar_builder_screen.dart';
 import 'package:my_store/core/routes/app_router.dart';
 import 'package:my_store/core/upload_image/cubit/cubit/upload_image_cubit.dart';
-import 'package:my_store/features/admin/presintation/screen/admin_home_page.dart';
+import 'package:my_store/features/admin/home_admin/presintation/screen/admin_home_page.dart';
 import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
 import 'package:my_store/features/auth/presintation/screens/login_page.dart';
 import 'package:my_store/features/auth/presintation/screens/sign_up_page.dart';

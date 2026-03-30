@@ -11,6 +11,7 @@ dependencies:
   animate_do: ^4.2.0
   connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
+
   dio: ^5.9.2
   firebase_core: ^4.4.0
   flutter:
@@ -24,6 +25,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   freezed_annotation: ^3.1.0
   image_picker: ^1.2.1
+  flutter_zoom_drawer: ^3.2.0
+
   retrofit: ^4.9.2
 
 flutter_launcher_icons:

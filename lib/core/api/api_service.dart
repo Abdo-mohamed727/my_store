@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:my_store/core/upload_image/models/upload_image_response.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
 import 'package:my_store/features/auth/data/models/sign_up_response.dart';
