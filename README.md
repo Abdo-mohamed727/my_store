@@ -5,6 +5,26 @@ The app allows users to browse products, view detailed information, add items to
 
 The project follows clean code principles and reusable widgets, making it easy to scale and maintain. It focuses on performance, user experience, and modern Flutter best practices.
 
+
+## 🚀 Features
+- 🔐 User Authentication
+- 📱 Responsive Design
+- 👥 User Roles (Admin & Customer)
+
+
+## 🛠️ Tech Stack
+- Frontend: Flutter
+- Backend:  FireBase
+- Api:  GraphQl
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" width="40"/>
+</p>
+
+##  Screens
+
+
 # ✅ Splash Screen
 <img width="1030" height="2022" alt="image" src="https://github.com/user-attachments/assets/adcd2cbc-54c8-4408-aacf-2e5d9c32b35b" />
 
