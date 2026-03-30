@@ -10,6 +10,8 @@ The project follows clean code principles and reusable widgets, making it easy t
 - 🔐 User Authentication
 - 📱 Responsive Design
 - 👥 User Roles (Admin & Customer)
+- 🌙 Theme Mode
+- 🌐 Multi-Language Support
 
 
 ## 🛠️ Tech Stack
