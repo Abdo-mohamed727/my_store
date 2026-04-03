@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:my_store/core/upload_image/models/upload_image_response.dart';
+import 'package:my_store/features/admin/dashboard/data/models/categorey_number_response.dart';
+import 'package:my_store/features/admin/dashboard/data/models/product_number_response.dart';
+import 'package:my_store/features/admin/dashboard/data/models/user_number_response.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
 import 'package:my_store/features/auth/data/models/sign_up_response.dart';
 import 'package:my_store/features/auth/data/models/user_role_response.dart';
@@ -26,4 +29,19 @@ abstract class ApiService {
 
   @POST(graphQl)
   Future<SignUpResponse> signUp(@Body() Map<String, dynamic> signUpBody);
+
+  @POST(graphQl)
+  Future<ProductNumberResponse> getProductsNumber(
+    @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphQl)
+  Future<UsersNumberResponse> getUsersNumber(
+    @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphQl)
+  Future<CategoryNumberResponse> getCategoryNumber(
+    @Body() Map<String, dynamic> query,
+  );
 }
