@@ -13,9 +13,6 @@ class ProductsNumberBloc
     extends Bloc<ProductsNumberEvent, ProductsNumberState> {
   ProductsNumberBloc(this._dashboardAdminRepo)
     : super(const ProductsNumberState.loading()) {
-    on<ProductsNumberEvent>((event, emit) {
-      // TODO: implement event handler
-    });
     on<ProductsNumberEvent>(_getProductsNumber);
   }
 

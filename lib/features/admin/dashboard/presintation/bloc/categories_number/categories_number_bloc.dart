@@ -13,9 +13,6 @@ class CategoriesNumberBloc
     extends Bloc<CategoriesNumberEvent, CategoriesNumberState> {
   CategoriesNumberBloc(this._dashboardAdminRepo)
     : super(const CategoriesNumberState.loading()) {
-    on<CategoriesNumberEvent>((event, emit) {
-      // TODO: implement event handler
-    });
     on<CategoriesNumberEvent>(_getCategoriesNumber);
   }
 

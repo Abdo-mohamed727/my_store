@@ -18,17 +18,17 @@ Map<String, dynamic> _$ProductNumberResponseToJson(
 
 ProductsDataModel _$ProductsDataModelFromJson(Map<String, dynamic> json) =>
     ProductsDataModel(
-      ProductsNumber: (json['Products'] as List<dynamic>)
+      productsNumber: (json['products'] as List<dynamic>)
           .map((e) => PeoductsNumberModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$ProductsDataModelToJson(ProductsDataModel instance) =>
-    <String, dynamic>{'Products': instance.ProductsNumber};
+    <String, dynamic>{'products': instance.productsNumber};
 
 PeoductsNumberModel _$PeoductsNumberModelFromJson(Map<String, dynamic> json) =>
-    PeoductsNumberModel(name: json['name'] as String);
+    PeoductsNumberModel(title: json['title'] as String);
 
 Map<String, dynamic> _$PeoductsNumberModelToJson(
   PeoductsNumberModel instance,
-) => <String, dynamic>{'name': instance.name};
+) => <String, dynamic>{'title': instance.title};

@@ -8,14 +8,11 @@ class AdminQueries {
   Map<String, dynamic> getProductsNumberQuery() {
     return {
       'query': '''
-
        {
-     Products {
-      tiitle
-             }  
+         products {
+           title
          }
-
- 
+       }
 ''',
     };
   }
@@ -23,13 +20,11 @@ class AdminQueries {
   Map<String, dynamic> getUsersNumberQuery() {
     return {
       'query': '''
-
        {
-     Users {
-      name
-             }  
+         users {
+           name
          }
-         }
+       }
 ''',
     };
   }
@@ -37,13 +32,11 @@ class AdminQueries {
   Map<String, dynamic> getCategoryNumberQuery() {
     return {
       'query': '''
-
        {
-     categories {
-      name
-             }  
+         categories {
+           id
          }
-         }
+       }
 ''',
     };
   }

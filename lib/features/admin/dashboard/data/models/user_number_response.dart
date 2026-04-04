@@ -14,10 +14,10 @@ class UsersNumberResponse {
 
 @JsonSerializable()
 class UserssDataModel {
-  UserssDataModel({required this.totalUserss});
+  UserssDataModel(this.totalUserss);
   factory UserssDataModel.fromJson(Map<String, dynamic> json) =>
       _$UserssDataModelFromJson(json);
-  @JsonKey(name: 'Users')
+  @JsonKey(name: 'users')
   final List<UsersNumbersModel> totalUserss;
 }
 

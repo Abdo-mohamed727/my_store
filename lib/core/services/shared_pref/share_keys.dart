@@ -4,4 +4,5 @@ class ShareKeys {
   static const String accesstoken = 'accesstoken';
   static const String userId = 'userId';
   static const String refreshtoken = 'refreshtoken';
+  static const String userRole = 'userRole';
 }

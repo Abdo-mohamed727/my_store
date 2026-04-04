@@ -10,23 +10,23 @@ class ProductNumberResponse {
   final ProductsDataModel data;
 
   String get productsNumber =>
-      data.ProductsNumber.isEmpty ? "0" : data.ProductsNumber.length.toString();
+      data.productsNumber.isEmpty ? "0" : data.productsNumber.length.toString();
 }
 
 @JsonSerializable()
 class ProductsDataModel {
-  ProductsDataModel({required this.ProductsNumber});
+  ProductsDataModel({required this.productsNumber});
   factory ProductsDataModel.fromJson(Map<String, dynamic> json) =>
       _$ProductsDataModelFromJson(json);
-  @JsonKey(name: 'Products')
-  final List<PeoductsNumberModel> ProductsNumber;
+  @JsonKey(name: 'products')
+  final List<PeoductsNumberModel> productsNumber;
 }
 
 @JsonSerializable()
 class PeoductsNumberModel {
-  PeoductsNumberModel({required this.name});
+  PeoductsNumberModel({required this.title});
 
   factory PeoductsNumberModel.fromJson(Map<String, dynamic> json) =>
       _$PeoductsNumberModelFromJson(json);
-  final String name;
+  final String title;
 }

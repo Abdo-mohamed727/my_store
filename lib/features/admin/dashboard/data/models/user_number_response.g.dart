@@ -17,13 +17,13 @@ Map<String, dynamic> _$UsersNumberResponseToJson(
 
 UserssDataModel _$UserssDataModelFromJson(Map<String, dynamic> json) =>
     UserssDataModel(
-      totalUserss: (json['Users'] as List<dynamic>)
+      (json['users'] as List<dynamic>)
           .map((e) => UsersNumbersModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$UserssDataModelToJson(UserssDataModel instance) =>
-    <String, dynamic>{'Users': instance.totalUserss};
+    <String, dynamic>{'users': instance.totalUserss};
 
 UsersNumbersModel _$UsersNumbersModelFromJson(Map<String, dynamic> json) =>
     UsersNumbersModel(json['name'] as String);

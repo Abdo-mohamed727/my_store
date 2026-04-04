@@ -12,7 +12,6 @@ part 'users_number_bloc.freezed.dart';
 class UsersNumberBloc extends Bloc<UsersNumberEvent, UsersNumberState> {
   UsersNumberBloc(this._dashboardAdminRepo)
     : super(const UsersNumberState.loading()) {
-    on<UsersNumberEvent>((event, emit) {});
     on<UsersNumberEvent>(_getUsersNumber);
   }
 

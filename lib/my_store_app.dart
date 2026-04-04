@@ -10,6 +10,7 @@ import 'package:my_store/core/routes/app_routes.dart';
 import 'package:my_store/core/services/shared_pref/share_keys.dart';
 import 'package:my_store/core/services/shared_pref/share_pref.dart';
 import 'package:my_store/core/style/theme/app_theme.dart';
+import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,39 +27,55 @@ class MyApp extends StatelessWidget {
                 shareMode: SharedPref().getBoolean(ShareKeys.themeMode),
               )
               ..getSavedLanguage(),
-            child: ScreenUtilInit(
-              designSize: const Size(375, 812),
-              minTextAdapt: true,
-              child: BlocBuilder<AppCubitCubit, AppCubitState>(
-                buildWhen: (prev, current) => prev != current,
-                builder: (context, state) {
-                  final cubit = context.read<AppCubitCubit>();
+            child: BlocProvider(
+              create: (context) => sl<AuthBloc>(),
+              child: ScreenUtilInit(
+                designSize: const Size(375, 812),
+                minTextAdapt: true,
+                child: BlocBuilder<AppCubitCubit, AppCubitState>(
+                  buildWhen: (prev, current) => prev != current,
+                  builder: (context, state) {
+                    final cubit = context.read<AppCubitCubit>();
 
-                  return MaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Flutter Demo',
-                    theme: cubit.isDark ? themeDark() : themeLight(),
-                    locale: Locale(cubit.currentLangCode),
-                    localizationsDelegates:
-                        AppLocalizationsSetup.localizationsDelegates,
-                    supportedLocales: AppLocalizationsSetup.supportedLocales,
-                    localeResolutionCallback:
-                        AppLocalizationsSetup.localeResolutionCallback,
-                    builder: (context, widget) {
-                      return Scaffold(
-                        body: Builder(
-                          builder: (context) {
-                            ConnectivityController.instance.init();
+                    return BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (prev, current) => current is SuccessState,
+                      builder: (context, state) {
+                        return MaterialApp(
+                          debugShowCheckedModeBanner: false,
+                          title: 'Flutter Demo',
+                          theme: cubit.isDark ? themeDark() : themeLight(),
+                          locale: Locale(cubit.currentLangCode),
+                          localizationsDelegates:
+                              AppLocalizationsSetup.localizationsDelegates,
+                          supportedLocales:
+                              AppLocalizationsSetup.supportedLocales,
+                          localeResolutionCallback:
+                              AppLocalizationsSetup.localeResolutionCallback,
+                          builder: (context, widget) {
+                            return Scaffold(
+                              body: Builder(
+                                builder: (context) {
+                                  ConnectivityController.instance.init();
 
-                            return widget!;
+                                  return widget!;
+                                },
+                              ),
+                            );
                           },
-                        ),
-                      );
-                    },
-                    onGenerateRoute: AppRoutes.onGenerateRoute,
-                    initialRoute: AppRoutes.loginpage,
-                  );
-                },
+                          onGenerateRoute: AppRoutes.onGenerateRoute,
+                          initialRoute:
+                              SharedPref().getString(ShareKeys.accesstoken) !=
+                                  null
+                              ? SharedPref().getString(ShareKeys.userRole) ==
+                                        'admin'
+                                    ? AppRoutes.customerHomePage
+                                    : AppRoutes.adminHomePage
+                              : AppRoutes.loginpage,
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           );
