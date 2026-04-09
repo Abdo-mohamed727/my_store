@@ -15,45 +15,59 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
       child: CustomContainerLinearAdmin(
         height: 150.h,
         width: double.infinity,
-
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              children: [
-                TextApp(
-                  text: name,
-                  theme: context.textStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 16.0,
                 ),
-                Spacer(),
-                Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.edit, color: Colors.white),
+                    TextApp(
+                      text: name,
+                      theme: context.textStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.delete, color: Colors.red),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit, color: Colors.white),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                Spacer(),
-              ],
+              ),
             ),
-            CachedNetworkImage(
-              imageUrl: image,
-              width: 100.w,
-              height: 100.h,
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                width: 120.w,
+                height: 150.h,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
           ],
         ),
