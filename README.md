@@ -10,3 +10,6 @@ The project follows clean code principles and reusable widgets, making it easy t
 # ✅ Splash Screen
 <img width="960" height="2022" alt="image" src="https://github.com/user-attachments/assets/edfae537-492d-41da-96c8-95e017ebda7f" />
 
+# ✅ Categories Screen
+<!-- Replace the src URL below with the actual image URL after uploading it to GitHub -->
+<img width="960" height="2022" alt="Categories Screen" src="REPLACE_WITH_IMAGE_URL" />

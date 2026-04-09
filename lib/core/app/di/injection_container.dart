@@ -16,6 +16,9 @@ import 'package:my_store/features/admin/dashboard/data/repo/dashboard_admin_repo
 import 'package:my_store/features/admin/dashboard/presintation/bloc/categories_number/categories_number_bloc.dart';
 import 'package:my_store/features/admin/dashboard/presintation/bloc/products_number/products_number_bloc.dart';
 import 'package:my_store/features/admin/dashboard/presintation/bloc/users_number/users_number_bloc.dart';
+import 'package:my_store/features/admin/add_products/data/data_source/add_products_data_source.dart';
+import 'package:my_store/features/admin/add_products/data/repo/add_products_repo.dart';
+import 'package:my_store/features/admin/add_products/presintation/bloc/get_all_products/get_all_products_bloc.dart';
 import 'package:my_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:my_store/features/auth/data/repo/auth_repo.dart';
 import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
@@ -26,6 +29,7 @@ Future<void> setupInjector() async {
   await _initcore();
   await _initAuth();
   await _initAddCategories();
+  await _initAddProducts();
   await _initDashboardAdmin();
 }
 
@@ -54,6 +58,13 @@ Future<void> _initAddCategories() async {
     ..registerFactory(() => DeleteCategoryBloc(sl()))
     ..registerLazySingleton(() => AddCategoriesDataSource(sl()))
     ..registerLazySingleton(() => AddCategoriesRepo(sl()));
+}
+
+Future<void> _initAddProducts() async {
+  sl
+    ..registerFactory(() => GetAllProductsBloc(sl()))
+    ..registerLazySingleton(() => AddProductsDataSource(sl()))
+    ..registerLazySingleton(() => AddProductsRepo(sl()));
 }
 
 Future<void> _initDashboardAdmin() async {

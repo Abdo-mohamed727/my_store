@@ -76,6 +76,26 @@ mutation CreateCategory($name: String!, $image: String!) {
     };
   }
 
+  Map<String, dynamic> getAllProductsQuery() {
+    return {
+      'query': '''
+       {
+         products {
+           id
+           title
+           price
+           description
+           images
+           category {
+             id
+             name
+           }
+         }
+       }
+''',
+    };
+  }
+
   Map<String, dynamic> deleteCategoryQuery({required String id}) {
     return {
       'query': r'''

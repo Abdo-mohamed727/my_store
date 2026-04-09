@@ -4,6 +4,7 @@ import 'package:my_store/features/admin/dashboard/data/models/categorey_number_r
 import 'package:my_store/features/admin/add_categories/data/models/add_categories_response.dart';
 import 'package:my_store/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:my_store/features/admin/add_categories/data/models/update_category_response.dart';
+import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
 import 'package:my_store/features/admin/dashboard/data/models/product_number_response.dart';
 import 'package:my_store/features/admin/dashboard/data/models/user_number_response.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
@@ -66,5 +67,10 @@ abstract class ApiService {
   @POST(graphQl)
   Future<void> deleteCategory(
     @Body() Map<String, dynamic> mutation,
+  );
+
+  @POST(graphQl)
+  Future<GetAllProductResponse> getAllProducts(
+    @Body() Map<String, dynamic> query,
   );
 }
