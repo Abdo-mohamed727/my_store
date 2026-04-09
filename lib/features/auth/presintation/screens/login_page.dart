@@ -10,16 +10,19 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomPaint(
-        size: Size(double.infinity, 150.h),
-        painter: AuthCustomPainter(
-          gradient: LinearGradient(
-            colors: [
-              context.myColors.bluePinkLight!,
-              context.myColors.bluePinkLight!,
-              context.myColors.bluePinkLight!,
-              context.myColors.bluePinkDark!,
-            ],
+      bottomNavigationBar: SizedBox(
+        height: 150.h,
+        child: CustomPaint(
+          size: Size(double.infinity, 150.h),
+          painter: AuthCustomPainter(
+            gradient: LinearGradient(
+              colors: [
+                context.myColors.bluePinkLight!,
+                context.myColors.bluePinkLight!,
+                context.myColors.bluePinkLight!,
+                context.myColors.bluePinkDark!,
+              ],
+            ),
           ),
         ),
       ),

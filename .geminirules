@@ -1,0 +1,30 @@
+# Gemini Rules for the my_store Flutter Project
+
+## Project Context
+- **Framework**: Flutter
+- **Language**: Dart
+- **Architecture Base**: Feature-based architecture (e.g., `lib/features/`, `lib/core/`).
+
+## General Instructions
+1. **Understand Before Coding**: Always read the existing relevant code and thoroughly understand the requested change before writing any code.
+2. **Keep it Clean**: Write clean, readable, and maintainable Dart code according to the official Dart style guide.
+3. **Null Safety**: Ensure proper use of Dart's null safety features.
+4. **State Management**: If working with state management (like Riverpod, Provider, or BLoC), follow the project's established patterns.
+5. **Widget Extraction**: Keep widget build methods small. Extract complex widgets into separate classes.
+6. **Reusability**: Utilize the `lib/core/` and `lib/core/app/widgets/` directories for reusable, app-wide components (like custom buttons, text fields, etc.).
+7. **Error Prevention**: When fixing bugs (e.g., Memory Leaks, UI rendering issues), always analyze the root cause and explain it briefly before applying the fix.
+
+## Code formatting
+- Use trailing commas for all Flutter widgets, parameters, and lists to ensure proper formatting by `dart format`.
+- Prefer absolute imports for files inside the current package (e.g., `import 'package:my_store/...';`).
+- Keep lines concise where possible, but prioritize readability.
+
+## Testing & Performance
+- Watch out for unnecessary widget rebuilds; use `const` constructors wherever possible.
+- Avoid memory leaks: always dispose of controllers (like `TextEditingController`, `AnimationController`, etc.) inside the `dispose()` method of StatefulWidgets.
+- Keep performance in check, especially when working with extensive animations, lists, or large image files.
+
+## Communication Guidelines
+- Be direct and concise.
+- Provide clear diffs or complete file alternatives depending on the size of the change requested.
+- Alert the user using markdown blocks if a proposed approach may cause breaking changes.

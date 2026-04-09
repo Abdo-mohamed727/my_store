@@ -40,4 +40,39 @@ class AdminQueries {
 ''',
     };
   }
+
+  Map<String, dynamic> getAllCategoriesQuery() {
+    return {
+      'query': '''
+       {
+         categories {
+           id
+           name
+           image
+         }
+       }
+''',
+    };
+  }
+
+  Map<String, dynamic> createCategoryQuery({
+    required String name,
+    required String image,
+  }) {
+    return {
+      'query': r'''
+mutation CreateCategory($name: String!, $image: String!) {
+  addCategory(data: { name: $name, image: $image }) {
+    id
+    name
+    image
+  }
+}
+''',
+      'variables': {
+        'name': name,
+        'image': image,
+      },
+    };
+  }
 }

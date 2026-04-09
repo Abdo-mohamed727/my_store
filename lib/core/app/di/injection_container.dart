@@ -5,6 +5,10 @@ import 'package:my_store/core/app/cubit/app_cubit_cubit.dart';
 import 'package:my_store/core/upload_image/cubit/cubit/upload_image_cubit.dart';
 import 'package:my_store/core/upload_image/data_source/upload_image_data_source.dart';
 import 'package:my_store/core/upload_image/repo/upload_image_repo.dart';
+import 'package:my_store/features/admin/add_categories/data/data_source/add_categories_data_source.dart';
+import 'package:my_store/features/admin/add_categories/data/repo/add_categories_repo.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/create_category/create_category_bloc.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/get_all_categories/get_all_categories_bloc.dart';
 import 'package:my_store/features/admin/dashboard/data/data_source/dashboard_admin_data_source.dart';
 import 'package:my_store/features/admin/dashboard/data/repo/dashboard_admin_repo.dart';
 import 'package:my_store/features/admin/dashboard/presintation/bloc/categories_number/categories_number_bloc.dart';
@@ -19,6 +23,7 @@ final sl = GetIt.instance;
 Future<void> setupInjector() async {
   await _initcore();
   await _initAuth();
+  await _initAddCategories();
   await _initDashboardAdmin();
 }
 
@@ -37,6 +42,14 @@ Future<void> _initAuth() async {
     ..registerFactory(() => AuthBloc(sl()))
     ..registerLazySingleton(() => AuthDataSource(sl()))
     ..registerLazySingleton(() => AuthRepo(sl()));
+}
+
+Future<void> _initAddCategories() async {
+  sl
+    ..registerFactory(() => GetAllCategoriesBloc(sl()))
+    ..registerFactory(() => CreateCategoryBloc(sl()))
+    ..registerLazySingleton(() => AddCategoriesDataSource(sl()))
+    ..registerLazySingleton(() => AddCategoriesRepo(sl()));
 }
 
 Future<void> _initDashboardAdmin() async {
