@@ -24,36 +24,38 @@ class _LoginBodyState extends State<LoginBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 70),
-      child: Column(
-        children: [
-          const LanguageAndThemeButtons(),
-          SizedBox(height: 40.h),
-          TextWelcome(
-            text: context.translate(LangKeys.login),
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const LanguageAndThemeButtons(),
+            SizedBox(height: 40.h),
+            TextWelcome(
+              text: context.translate(LangKeys.login),
+            ),
 
-          SizedBox(height: 50.h),
-          const EmailAndPassFormField(),
-          SizedBox(height: 40.h),
-          const LoginButton(),
-          SizedBox(height: 40.h),
-          CoustomFadeInUp(
-            duration: 1300,
-            child: TextButton(
-              onPressed: () {
-                context.pushNamed(AppRoutes.signUpPage);
-              },
-              child: TextApp(
-                text: context.translate(LangKeys.createAccount),
-                theme: context.textStyle.copyWith(
-                  color: context.myColors.bluePinkLight,
-                  fontSize: 20,
-                  fontWeight: FontWeightHelper.mediaum,
+            SizedBox(height: 50.h),
+            const EmailAndPassFormField(),
+            SizedBox(height: 40.h),
+            const LoginButton(),
+            SizedBox(height: 40.h),
+            CoustomFadeInUp(
+              duration: 1300,
+              child: TextButton(
+                onPressed: () {
+                  context.pushNamed(AppRoutes.signUpPage);
+                },
+                child: TextApp(
+                  text: context.translate(LangKeys.createAccount),
+                  theme: context.textStyle.copyWith(
+                    color: context.myColors.bluePinkLight,
+                    fontSize: 20,
+                    fontWeight: FontWeightHelper.mediaum,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
