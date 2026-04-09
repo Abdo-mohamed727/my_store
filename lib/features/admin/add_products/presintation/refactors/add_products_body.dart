@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
 import 'package:my_store/features/admin/add_products/presintation/bloc/get_all_products/get_all_products_bloc.dart';
 import 'package:my_store/features/admin/add_products/presintation/bloc/get_all_products/get_all_products_state.dart';
+import 'package:my_store/features/admin/add_products/presintation/widgets/create_product.dart';
 import 'package:my_store/features/admin/add_products/presintation/widgets/product_item.dart';
 import 'package:my_store/features/admin/add_products/presintation/widgets/products_list_shimmer.dart';
 
@@ -12,15 +13,22 @@ class AddProductsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAllProductsBloc, GetAllProductsState>(
-      builder: (context, state) {
-        return state.when(
-          initial: () => const ProductsListShimmer(),
-          loading: () => const ProductsListShimmer(),
-          success: (response) => _ProductsList(response: response),
-          error: (errorMessage) => _ProductsError(message: errorMessage),
-        );
-      },
+    return Column(
+      children: [
+        const CreateProduct(),
+        Expanded(
+          child: BlocBuilder<GetAllProductsBloc, GetAllProductsState>(
+            builder: (context, state) {
+              return state.when(
+                initial: () => const ProductsListShimmer(),
+                loading: () => const ProductsListShimmer(),
+                success: (response) => _ProductsList(response: response),
+                error: (errorMessage) => _ProductsError(message: errorMessage),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

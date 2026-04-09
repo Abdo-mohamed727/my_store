@@ -131,4 +131,30 @@ mutation UpdateCategory($id: ID!, $name: String!, $image: String!) {
       },
     };
   }
+
+  Map<String, dynamic> createProductQuery({
+    required String title,
+    required double price,
+    required String description,
+    required List<String> images,
+    required String categoryId,
+  }) {
+    return {
+      'query': r'''
+mutation CreateProduct($title: String!, $price: Float!, $description: String!, $images: [String!]!, $categoryId: ID!) {
+  addProduct(data: { title: $title, price: $price, description: $description, images: $images, categoryId: $categoryId }) {
+    id
+    title
+  }
+}
+''',
+      'variables': {
+        'title': title,
+        'price': price,
+        'description': description,
+        'images': images,
+        'categoryId': categoryId,
+      },
+    };
+  }
 }

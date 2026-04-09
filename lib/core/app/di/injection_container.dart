@@ -19,6 +19,7 @@ import 'package:my_store/features/admin/dashboard/presintation/bloc/users_number
 import 'package:my_store/features/admin/add_products/data/data_source/add_products_data_source.dart';
 import 'package:my_store/features/admin/add_products/data/repo/add_products_repo.dart';
 import 'package:my_store/features/admin/add_products/presintation/bloc/get_all_products/get_all_products_bloc.dart';
+import 'package:my_store/features/admin/add_products/presintation/bloc/create_product/create_product_bloc.dart';
 import 'package:my_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:my_store/features/auth/data/repo/auth_repo.dart';
 import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
@@ -63,6 +64,7 @@ Future<void> _initAddCategories() async {
 Future<void> _initAddProducts() async {
   sl
     ..registerFactory(() => GetAllProductsBloc(sl()))
+    ..registerFactory(() => CreateProductBloc(sl()))
     ..registerLazySingleton(() => AddProductsDataSource(sl()))
     ..registerLazySingleton(() => AddProductsRepo(sl()));
 }
