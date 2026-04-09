@@ -8,14 +8,27 @@ import 'package:my_store/core/app/widgets/text_app.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
 import 'package:my_store/core/upload_image/cubit/cubit/upload_image_cubit.dart';
 import 'package:my_store/features/admin/add_categories/data/models/create_category_request_body.dart';
+import 'package:my_store/features/admin/add_categories/data/models/update_category_request_body.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/create_category/create_category_bloc.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/create_category/create_category_event.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/create_category/create_category_state.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/update_category/update_category_bloc.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/update_category/update_category_event.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/update_category/update_category_state.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/get_all_categories/get_all_categories_bloc.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/get_all_categories/get_all_categories_event.dart';
 
 class AddCategoryBottomSheet extends StatefulWidget {
-  const AddCategoryBottomSheet({super.key});
+  const AddCategoryBottomSheet({
+    this.categoryId,
+    this.initialName,
+    this.initialImage,
+    super.key,
+  });
+
+  final String? categoryId;
+  final String? initialName;
+  final String? initialImage;
 
   @override
   State<AddCategoryBottomSheet> createState() => _AddCategoryBottomSheetState();
@@ -26,6 +39,14 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.initialName != null) {
+      _nameController.text = widget.initialName!;
+    }
+  }
+
+  @override
   void dispose() {
     _nameController.dispose();
     super.dispose();
@@ -33,6 +54,7 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final isUpdate = widget.categoryId != null;
     return Container(
       padding: EdgeInsets.only(
         left: 20.w,
@@ -49,7 +71,7 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
             children: [
               Center(
                 child: TextApp(
-                  text: 'Add New Category',
+                  text: isUpdate ? 'Update Category' : 'Add New Category',
                   theme: context.textStyle.copyWith(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
@@ -79,6 +101,10 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                 builder: (context, state) {
                   final cubit = context.read<UploadImageCubit>();
                   final bool isImageLoaded = cubit.imageUrl.isNotEmpty;
+                  final imageUrlToShow = isImageLoaded 
+                      ? cubit.imageUrl 
+                      : (widget.initialImage ?? '');
+                  final hasImageToShow = imageUrlToShow.isNotEmpty;
 
                   return state.maybeWhen(
                     loading: () =>
@@ -86,14 +112,14 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                     orElse: () => Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        if (isImageLoaded)
+                        if (hasImageToShow)
                           Container(
                             height: 100.h,
                             margin: EdgeInsets.only(bottom: 15.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
-                                image: NetworkImage(cubit.imageUrl),
+                                image: NetworkImage(imageUrlToShow),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -103,7 +129,7 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                           onPressed: () {
                             context.read<UploadImageCubit>().uploadImage();
                           },
-                          text: isImageLoaded ? 'Change Image' : 'Upload Image',
+                          text: hasImageToShow ? 'Change Image' : 'Upload Image',
                           width: double.infinity,
                           height: 45.h,
                         ),
@@ -113,7 +139,7 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                 },
               ),
               SizedBox(height: 20.h),
-              BlocConsumer<CreateCategoryBloc, CreateCategoryState>(
+              BlocListener<UpdateCategoryBloc, UpdateCategoryState>(
                 listener: (context, state) {
                   state.whenOrNull(
                     success: (response) {
@@ -123,7 +149,7 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Category added successfully'),
+                          content: Text('Category updated successfully'),
                         ),
                       );
                     },
@@ -134,18 +160,52 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                     },
                   );
                 },
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                    orElse: () => CustomButton(
+                child: BlocConsumer<CreateCategoryBloc, CreateCategoryState>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      success: (response) {
+                        context.read<GetAllCategoriesBloc>().add(
+                          const GetAllCategoriesEvent.fetch(),
+                        );
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Category added successfully'),
+                          ),
+                        );
+                      },
+                      error: (errorMessage) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(errorMessage)),
+                        );
+                      },
+                    );
+                  },
+                  builder: (context, createReqState) {
+                    return BlocBuilder<UpdateCategoryBloc, UpdateCategoryState>(
+                      builder: (context, updateReqState) {
+                        final isLoading = createReqState.maybeWhen(
+                              loading: () => true,
+                              orElse: () => false,
+                            ) ||
+                            updateReqState.maybeWhen(
+                              loading: () => true,
+                              orElse: () => false,
+                            );
+
+                        if (isLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        return CustomButton(
                       backgroundColor: context.myColors.bluePinkDark,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          final imageUrl = context
-                              .read<UploadImageCubit>()
-                              .imageUrl;
-                          if (imageUrl.isEmpty) {
+                          final imageUrl = context.read<UploadImageCubit>().imageUrl;
+                          final finalImageUrl = imageUrl.isNotEmpty ? imageUrl : (widget.initialImage ?? '');
+
+                          if (finalImageUrl.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Please upload an image'),
@@ -154,34 +214,53 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                             return;
                           }
 
-                          context.read<CreateCategoryBloc>().add(
-                            CreateCategoryEvent.createCategory(
-                              body: CreateCategoryRequestBody(
-                                name: _nameController.text,
-                                image: imageUrl,
+                          if (isUpdate) {
+                            context.read<UpdateCategoryBloc>().add(
+                              UpdateCategoryEvent.updateCategory(
+                                body: UpdateCategoryRequestBody(
+                                  id: widget.categoryId!,
+                                  name: _nameController.text,
+                                  image: finalImageUrl,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            context.read<CreateCategoryBloc>().add(
+                              CreateCategoryEvent.createCategory(
+                                body: CreateCategoryRequestBody(
+                                  name: _nameController.text,
+                                  image: finalImageUrl,
+                                ),
+                              ),
+                            );
+                          }
                         }
                       },
-                      text: 'Add Category',
+                      text: isUpdate ? 'Update Category' : 'Add Category',
                       width: double.infinity,
                       height: 45.h,
                       lastRadius: 10,
                       threeRadius: 10,
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                );
+              },
+            ),
           ),
-        ),
+        ],
+      ),
+    ),
       ),
     );
   }
 }
 
-void showAddCategoryBottomSheet(BuildContext context) {
+void showAddCategoryBottomSheet(
+  BuildContext context, {
+  String? categoryId,
+  String? initialName,
+  String? initialImage,
+}) {
   // We need to capture the parent's GetAllCategoriesBloc to refresh it.
   final getAllCategoriesBloc = context.read<GetAllCategoriesBloc>();
 
@@ -197,12 +276,18 @@ void showAddCategoryBottomSheet(BuildContext context) {
         providers: [
           BlocProvider(create: (context) => sl<UploadImageCubit>()),
           BlocProvider(create: (context) => sl<CreateCategoryBloc>()),
+          BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
           BlocProvider.value(
             value: getAllCategoriesBloc,
           ), // Pass the existing bloc down
         ],
-        child: const AddCategoryBottomSheet(),
+        child: AddCategoryBottomSheet(
+          categoryId: categoryId,
+          initialName: initialName,
+          initialImage: initialImage,
+        ),
       );
     },
   );
 }
+

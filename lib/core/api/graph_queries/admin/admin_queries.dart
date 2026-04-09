@@ -75,4 +75,40 @@ mutation CreateCategory($name: String!, $image: String!) {
       },
     };
   }
+
+  Map<String, dynamic> deleteCategoryQuery({required String id}) {
+    return {
+      'query': r'''
+mutation DeleteCategory($id: ID!) {
+  deleteCategory(id: $id)
+}
+''',
+      'variables': {
+        'id': id,
+      },
+    };
+  }
+
+  Map<String, dynamic> updateCategoryQuery({
+    required String id,
+    required String name,
+    required String image,
+  }) {
+    return {
+      'query': r'''
+mutation UpdateCategory($id: ID!, $name: String!, $image: String!) {
+  updateCategory(id: $id, changes: { name: $name, image: $image }) {
+    id
+    name
+    image
+  }
+}
+''',
+      'variables': {
+        'id': id,
+        'name': name,
+        'image': image,
+      },
+    };
+  }
 }

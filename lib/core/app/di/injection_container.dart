@@ -9,6 +9,8 @@ import 'package:my_store/features/admin/add_categories/data/data_source/add_cate
 import 'package:my_store/features/admin/add_categories/data/repo/add_categories_repo.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/create_category/create_category_bloc.dart';
 import 'package:my_store/features/admin/add_categories/presintation/bloc/get_all_categories/get_all_categories_bloc.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/update_category/update_category_bloc.dart';
+import 'package:my_store/features/admin/add_categories/presintation/bloc/delete_category/delete_category_bloc.dart';
 import 'package:my_store/features/admin/dashboard/data/data_source/dashboard_admin_data_source.dart';
 import 'package:my_store/features/admin/dashboard/data/repo/dashboard_admin_repo.dart';
 import 'package:my_store/features/admin/dashboard/presintation/bloc/categories_number/categories_number_bloc.dart';
@@ -48,6 +50,8 @@ Future<void> _initAddCategories() async {
   sl
     ..registerFactory(() => GetAllCategoriesBloc(sl()))
     ..registerFactory(() => CreateCategoryBloc(sl()))
+    ..registerFactory(() => UpdateCategoryBloc(sl()))
+    ..registerFactory(() => DeleteCategoryBloc(sl()))
     ..registerLazySingleton(() => AddCategoriesDataSource(sl()))
     ..registerLazySingleton(() => AddCategoriesRepo(sl()));
 }
