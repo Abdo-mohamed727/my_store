@@ -41,3 +41,9 @@ The project follows clean code principles and reusable widgets, making it easy t
 <img width="951" height="2005" alt="Screenshot 2026-03-30 221802" src="https://github.com/user-attachments/assets/7fbb50f7-21d2-4fab-93fd-b40155868cb2" />
 
 
+# ✅ Admin Categories Page 
+ <div style="display: flex; gap: 100px;">
+   <img width="1440" height="3120" alt="Screenshot_1775742557" src="https://github.com/user-attachments/assets/fb1c210c-eed5-4899-baa9-bddc09b22c75" />
+   <img width="951" height="2005" alt="Screenshot 2026-03-30 221802" src="https://github.com/user-attachments/assets/6d174ccd-75f9-486a-ac97-2de6e5b423c1" />
+</div>
+ 
