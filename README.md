@@ -41,3 +41,6 @@ The project follows clean code principles and reusable widgets, making it easy t
 <img width="951" height="2005" alt="Screenshot 2026-03-30 221802" src="https://github.com/user-attachments/assets/7fbb50f7-21d2-4fab-93fd-b40155868cb2" />
 
 
+# ✅ Categories Screen
+<!-- Replace the src URL below with the actual image URL after uploading it to GitHub -->
+<img width="960" height="2022" alt="Categories Screen" src="REPLACE_WITH_IMAGE_URL" />
