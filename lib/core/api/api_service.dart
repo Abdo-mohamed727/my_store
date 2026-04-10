@@ -6,6 +6,7 @@ import 'package:my_store/features/admin/add_categories/data/models/create_catego
 import 'package:my_store/features/admin/add_categories/data/models/update_category_response.dart';
 import 'package:my_store/features/admin/add_products/data/models/create_product_response.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
+import 'package:my_store/features/admin/add_products/data/models/update_product_response.dart';
 import 'package:my_store/features/admin/dashboard/data/models/product_number_response.dart';
 import 'package:my_store/features/admin/dashboard/data/models/user_number_response.dart';
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
@@ -77,6 +78,10 @@ abstract class ApiService {
 
   @POST(graphQl)
   Future<CreateProductResponse> createProduct(
+    @Body() Map<String, dynamic> mutation,
+  );
+  @POST(graphQl)
+  Future<UpdateProductResponse> updateProduct(
     @Body() Map<String, dynamic> mutation,
   );
 }

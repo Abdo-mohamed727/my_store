@@ -141,7 +141,7 @@ mutation UpdateCategory($id: ID!, $name: String!, $image: String!) {
   }) {
     return {
       'query': r'''
-mutation CreateProduct($title: String!, $price: Float!, $description: String!, $images: [String!]!, $categoryId: ID!) {
+mutation CreateProduct($title: String!, $price: Float!, $description: String!, $images: [String!]!, $categoryId: Float!) {
   addProduct(data: { title: $title, price: $price, description: $description, images: $images, categoryId: $categoryId }) {
     id
     title
@@ -153,7 +153,34 @@ mutation CreateProduct($title: String!, $price: Float!, $description: String!, $
         'price': price,
         'description': description,
         'images': images,
-        'categoryId': categoryId,
+        'categoryId': double.parse(categoryId),
+      },
+    };
+  }
+  Map<String, dynamic> updateProductQuery({
+    required String id,
+    required String title,
+    required double price,
+    required String description,
+    required List<String> images,
+    required String categoryId,
+  }) {
+    return {
+      'query': r'''
+mutation UpdateProduct($id: ID!, $title: String!, $price: Float!, $description: String!, $images: [String!]!, $categoryId: Float!) {
+  updateProduct(id: $id, changes: { title: $title, price: $price, description: $description, images: $images, categoryId: $categoryId }) {
+    id
+    title
+  }
+}
+''',
+      'variables': {
+        'id': id,
+        'title': title,
+        'price': price,
+        'description': description,
+        'images': images,
+        'categoryId': double.parse(categoryId),
       },
     };
   }

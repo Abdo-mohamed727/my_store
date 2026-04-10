@@ -141,6 +141,7 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                     success: (response) {
                       final categories = response.data.totalCategorys;
                       return DropdownButtonFormField<String>(
+                        isExpanded: true,
                         value: _selectedCategoryId,
                         hint: const Text('Select Category'),
                         dropdownColor: Colors.grey.shade800,
@@ -153,8 +154,9 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                           return DropdownMenuItem<String>(
                             value: category.id,
                             child: Text(
-                              category.name ?? 'No Name',
+                              category.name,
                               style: const TextStyle(color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           );
                         }).toList(),
@@ -182,19 +184,22 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                   final imageUrl = cubit.imageUrl;
 
                   return state.maybeWhen(
-                    loading: () => const Center(child: CircularProgressIndicator()),
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
                     orElse: () => Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         if (imageUrl.isNotEmpty)
-                          Container(
-                            height: 100.h,
-                            margin: EdgeInsets.only(bottom: 15.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: NetworkImage(imageUrl),
-                                fit: BoxFit.cover,
+                          AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 15.h),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: NetworkImage(imageUrl),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -203,7 +208,9 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                           onPressed: () {
                             context.read<UploadImageCubit>().uploadImage();
                           },
-                          text: imageUrl.isNotEmpty ? 'Change Image' : 'Upload Image',
+                          text: imageUrl.isNotEmpty
+                              ? 'Change Image'
+                              : 'Upload Image',
                           width: double.infinity,
                           height: 45.h,
                         ),
@@ -248,7 +255,9 @@ class _AddProductBottomSheetState extends State<AddProductBottomSheet> {
                     backgroundColor: context.myColors.bluePinkDark,
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        final imageUrl = context.read<UploadImageCubit>().imageUrl;
+                        final imageUrl = context
+                            .read<UploadImageCubit>()
+                            .imageUrl;
                         if (imageUrl.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

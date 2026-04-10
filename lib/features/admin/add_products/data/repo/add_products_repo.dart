@@ -3,6 +3,8 @@ import 'package:my_store/features/admin/add_products/data/data_source/add_produc
 import 'package:my_store/features/admin/add_products/data/models/create_product_request_body.dart';
 import 'package:my_store/features/admin/add_products/data/models/create_product_response.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
+import 'package:my_store/features/admin/add_products/data/models/update_product_response.dart';
+import 'package:my_store/features/admin/add_products/data/models/update_product_request_body.dart';
 
 class AddProductsRepo {
   AddProductsRepo(this._dataSource);
@@ -28,6 +30,16 @@ class AddProductsRepo {
       return ApiResult.success(response);
     } on Exception catch (e) {
       return ApiResult.failure(e.toString());
+    } catch (e) {
+      return ApiResult.failure(e.toString());
+    }
+  }
+
+  Future<ApiResult<UpdateProductResponse>> updateProduct(
+      {required UpdateProductRequestBody body}) async {
+    try {
+      final response = await _dataSource.updateProduct(body: body);
+      return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(e.toString());
     }

@@ -5,6 +5,7 @@ import 'package:my_store/core/app/widgets/coustom_container_admin.dart';
 import 'package:my_store/core/app/widgets/text_app.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
+import 'package:my_store/features/admin/add_products/presintation/refactors/update_product_bottom_sheet.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -22,12 +23,15 @@ class ProductItem extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
-      child: CustomContainerLinearAdmin(
-        height: 150.h,
-        width: double.infinity,
-        child: _ProductItemContent(
-          product: product,
-          imageUrl: imageUrl,
+      child: GestureDetector(
+        onTap: () => showUpdateProductBottomSheet(context, product),
+        child: CustomContainerLinearAdmin(
+          height: 150.h,
+          width: double.infinity,
+          child: _ProductItemContent(
+            product: product,
+            imageUrl: imageUrl,
+          ),
         ),
       ),
     );
