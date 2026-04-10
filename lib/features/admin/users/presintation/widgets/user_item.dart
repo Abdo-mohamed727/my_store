@@ -10,7 +10,6 @@ import 'package:my_store/features/admin/users/presintation/bloc/delete_user/dele
 import 'package:my_store/features/admin/users/presintation/bloc/delete_user/delete_user_state.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/get_all_users/get_all_users_bloc.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/get_all_users/get_all_users_event.dart';
-import 'package:my_store/features/admin/users/presintation/widgets/delete_icon_button.dart';
 
 class UserItem extends StatelessWidget {
   const UserItem({super.key, required this.user});
@@ -19,6 +18,7 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userbloc = context.read<GetAllUsersBloc>();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       padding: EdgeInsets.all(16.w),
@@ -111,13 +111,26 @@ class UserItem extends StatelessWidget {
                           color: Colors.red,
                         ),
                       )
-                    : DeleteIconButton(user: user),
-                orElse: () => DeleteIconButton(user: user),
+                    : _buildDeleteIcon(context),
+                orElse: () => _buildDeleteIcon(context),
               );
             },
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDeleteIcon(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.delete, color: Colors.red),
+      onPressed: () {
+        if (user.id != null) {
+          context.read<DeleteUserBloc>().add(
+            DeleteUserEvent.deleteUser(userId: user.id!),
+          );
+        }
+      },
     );
   }
 }
