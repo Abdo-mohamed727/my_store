@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:my_store/features/admin/users/data/models/get_all_users_response.dart';
 import 'package:my_store/core/upload_image/models/upload_image_response.dart';
 import 'package:my_store/features/admin/dashboard/data/models/categorey_number_response.dart';
 import 'package:my_store/features/admin/add_categories/data/models/add_categories_response.dart';
@@ -47,6 +48,11 @@ abstract class ApiService {
   );
 
   @POST(graphQl)
+  Future<GetAllUsersResponse> getAllUsers(
+    @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphQl)
   Future<CategoryNumberResponse> getCategoryNumber(
     @Body() Map<String, dynamic> query,
   );
@@ -68,6 +74,11 @@ abstract class ApiService {
 
   @POST(graphQl)
   Future<void> deleteCategory(
+    @Body() Map<String, dynamic> mutation,
+  );
+
+  @POST(graphQl)
+  Future<dynamic> deleteUser(
     @Body() Map<String, dynamic> mutation,
   );
 

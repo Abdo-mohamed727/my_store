@@ -29,6 +29,20 @@ class AdminQueries {
     };
   }
 
+  Map<String, dynamic> getAllUsersQuery() {
+    return {
+      'query': '''
+       {
+         users {
+           id
+           name
+           email
+         }
+       }
+''',
+    };
+  }
+
   Map<String, dynamic> getCategoryNumberQuery() {
     return {
       'query': '''
@@ -96,6 +110,19 @@ mutation CreateCategory($name: String!, $image: String!) {
     };
   }
 
+  Map<String, dynamic> deleteUserQuery({required String id}) {
+    return {
+      'query': r'''
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id)
+}
+''',
+      'variables': {
+        'id': id,
+      },
+    };
+  }
+
   Map<String, dynamic> deleteCategoryQuery({required String id}) {
     return {
       'query': r'''
@@ -157,6 +184,7 @@ mutation CreateProduct($title: String!, $price: Float!, $description: String!, $
       },
     };
   }
+
   Map<String, dynamic> updateProductQuery({
     required String id,
     required String title,
