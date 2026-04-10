@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
   });
 
   final String? Function(String?)? validator;
-  final String? Function(String?)? onChanged;
+  final String? Function(String)? onChanged;
   final TextEditingController controller;
   final bool filled;
   final Color? fillColour;

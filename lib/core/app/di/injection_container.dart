@@ -24,7 +24,11 @@ import 'package:my_store/features/admin/add_products/presintation/bloc/update_pr
 import 'package:my_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:my_store/features/auth/data/repo/auth_repo.dart';
 import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
-
+import 'package:my_store/features/admin/users/data/data_source/users_data_source.dart';
+import 'package:my_store/features/admin/users/data/repo/users_repo.dart';
+import 'package:my_store/features/admin/users/presintation/bloc/get_all_users/get_all_users_bloc.dart';
+import 'package:my_store/features/admin/users/presintation/bloc/search_users/search_users_bloc.dart';
+import 'package:my_store/features/admin/users/presintation/bloc/delete_user/delete_user_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
@@ -33,6 +37,7 @@ Future<void> setupInjector() async {
   await _initAddCategories();
   await _initAddProducts();
   await _initDashboardAdmin();
+  await _initUsers();
 }
 
 Future<void> _initcore() async {
@@ -78,4 +83,13 @@ Future<void> _initDashboardAdmin() async {
     ..registerFactory(() => CategoriesNumberBloc(sl()))
     ..registerLazySingleton(() => DashboardAdminDataSource(sl()))
     ..registerLazySingleton(() => DashboardAdminRepo(sl()));
+}
+
+Future<void> _initUsers() async {
+  sl
+    ..registerFactory(() => GetAllUsersBloc(sl()))
+    ..registerFactory(() => SearchUsersBloc(sl()))
+    ..registerFactory(() => DeleteUserBloc(sl()))
+    ..registerLazySingleton(() => UsersDataSource(sl()))
+    ..registerLazySingleton(() => UsersRepo(sl()));
 }
