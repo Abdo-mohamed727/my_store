@@ -4,6 +4,10 @@ A modern **E-commerce mobile application** built using Flutter.
 The app allows users to browse products, view details, add items to cart, and manage their shopping experience with a smooth and responsive UI.
 
 The project follows **Clean Architecture**, reusable components, and best practices to ensure scalability and maintainability.
+- Used AI tools (Claude and Antigravity) for:
+  - Generating API integration logic
+  - Debugging UI overflow issues
+  - Improving code structure and performance
 
 ---
 
