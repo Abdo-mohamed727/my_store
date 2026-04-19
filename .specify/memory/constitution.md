@@ -1,50 +1,57 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version: Template -> 1.0.0
+Modified Principles:
+  - Initialized Principle I: Feature-Based Architecture
+  - Initialized Principle II: Type Safety & Code Generation
+  - Initialized Principle III: Responsive UI & Formatting
+  - Initialized Principle IV: Predictable State Management
+  - Initialized Principle V: Robust Error Handling & Network Integrity
+Added Sections:
+  - Repository Structure & Coding Rules
+  - Performance Guidelines
+Removed Sections:
+  - None
+Templates requiring updates:
+  - .specify/templates/plan-template.md (⚠ pending)
+  - .specify/templates/spec-template.md (⚠ pending)
+  - .specify/templates/tasks-template.md (⚠ pending)
+Follow-up TODOs: None
+-->
+
+# my_store Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Feature-Based Architecture
+All new modules and features must be structured inside the `features/` directory following a domain-specific model. Dependencies flow inwards adhering to Clean Architecture principles. UI and Business Logic are strictly separated.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Type Safety & Code Generation
+Dart null safety is strictly enforced. Non-null assertions (`!`) must be avoided unless the value is absolutely guaranteed non-null. `freezed` and `json_serializable` must be used for state and models. Generated code must be updated immediately upon model changes using `build_runner`.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Responsive UI & Formatting
+Interfaces must be entirely responsive leveraging `flutter_screenutil` (`.w`, `.h`, `.sp`, `.r`). Global styling elements must be sourced from `lib/core/style/` rather than hardcoded. `const` constructors must be used aggressively. Trailing commas are mandatory for readable layout formatting.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Predictable State Management
+BLoC or Cubit must be exclusively used for state management in feature use-cases. No business logic in the UI layer. States and events are strictly defined using `freezed`.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Robust Error Handling & Network Integrity
+Always implement robust error handling globally and locally. Exceptions must be caught and mapped to domain-specific failures. Network implementations rely on GraphQL and must propagate explicit loading, success, or error states back through the BLoC/Cubit to the UI.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Repository Structure & Coding Rules
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- **Core Reusables**: Shared tools, routes, config, API networking go in `lib/core/`.
+- **Naming Constraints**: PascalCase for Classes/Enums/Typedefs, snake_case for files, camelCase for variables/methods. Const variables must be lowerCamelCase.
+- **Resource Constraints**: Prefer absolute imports over relative paths. Retain existing directory spellings (e.g., `presintation`, `coustomer`) to prevent integration issues unless refactoring is explicitly approved.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Performance Guidelines
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Avoid unnecessary rebuilds by using `BlocSelector` or `BlocBuilder` with `buildWhen`.
+- For lists, strictly prefer `ListView.builder` over `ListView` with statically placed children.
+- Controllers (Animation, Text, Streams) must be explicitly disposed in closing methods safely.
+- All network images should be cached and compressed using `cached_network_image`.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Adherence to this constitution and the extended rules articulated within `CLAUDE.md` is strictly enforced. Any deviations require formal reasoning and an amendment update to this document. Pull requests and AI generations must pass consistency compliance correctly based on this constitution prior to code generation.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-04-14 | **Last Amended**: 2026-04-14
