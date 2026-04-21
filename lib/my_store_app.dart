@@ -65,12 +65,12 @@ class MyApp extends StatelessWidget {
                           onGenerateRoute: AppRoutes.onGenerateRoute,
                           initialRoute:
                               SharedPref().getString(ShareKeys.accesstoken) !=
-                                  null
-                              ? SharedPref().getString(ShareKeys.userRole) ==
-                                        'admin'
-                                    ? AppRoutes.customerHomePage
-                                    : AppRoutes.adminHomePage
-                              : AppRoutes.loginpage,
+                                      null
+                                  ? SharedPref().getString(ShareKeys.userRole) ==
+                                          'admin'
+                                      ? AppRoutes.adminHomePage
+                                      : AppRoutes.customerHomePage
+                                  : AppRoutes.loginpage,
                         );
                       },
                     );

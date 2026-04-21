@@ -29,6 +29,10 @@ import 'package:my_store/features/admin/users/data/repo/users_repo.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/get_all_users/get_all_users_bloc.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/search_users/search_users_bloc.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/delete_user/delete_user_bloc.dart';
+import 'package:my_store/features/coustomer/home/data/datasources/home_local_data_source.dart';
+import 'package:my_store/features/coustomer/home/data/repositories/home_repository_impl.dart';
+import 'package:my_store/features/coustomer/home/domain/repositories/home_repository.dart';
+import 'package:my_store/features/coustomer/home/presintation/bloc/home/home_cubit.dart';
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
@@ -38,6 +42,7 @@ Future<void> setupInjector() async {
   await _initAddProducts();
   await _initDashboardAdmin();
   await _initUsers();
+  await _initCustomerHome();
 }
 
 Future<void> _initcore() async {
@@ -92,4 +97,14 @@ Future<void> _initUsers() async {
     ..registerFactory(() => DeleteUserBloc(sl()))
     ..registerLazySingleton(() => UsersDataSource(sl()))
     ..registerLazySingleton(() => UsersRepo(sl()));
+}
+
+Future<void> _initCustomerHome() async {
+  sl
+    ..registerFactory(() => HomeCubit(sl()))
+    ..registerLazySingleton(HomeLocalDataSource.new)
+    ..registerLazySingleton<HomeRepositoryImpl>(
+      () => HomeRepositoryImpl(sl()),
+    )
+    ..registerLazySingleton<HomeRepository>(() => sl<HomeRepositoryImpl>());
 }

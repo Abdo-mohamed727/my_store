@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/app/widgets/app_image_shimmer.dart';
 import 'package:my_store/core/app/widgets/coustom_container_admin.dart';
 import 'package:my_store/core/app/widgets/text_app.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
@@ -19,7 +20,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageUrl = (product.images?.isNotEmpty ?? false)
         ? product.images!.first
-        : 'https://via.placeholder.com/150';
+        : '';
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
@@ -114,16 +115,19 @@ class _ProductImage extends StatelessWidget {
         topRight: Radius.circular(20),
         bottomRight: Radius.circular(20),
       ),
-      child: CachedNetworkImage(
-        imageUrl: imageUrl,
-        width: 120.w,
-        height: 150.h,
-        fit: BoxFit.cover,
-        errorWidget: (context, url, error) => const Icon(
-          Icons.broken_image,
-          color: Colors.white38,
-        ),
-      ),
+      child: imageUrl.isNotEmpty
+          ? CachedNetworkImage(
+              imageUrl: imageUrl,
+              width: 120.w,
+              height: 150.h,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const AppImageShimmer(),
+              errorWidget: (context, url, error) => const AppImageShimmer(),
+            )
+          : const SizedBox(
+              width: 120,
+              child: AppImageShimmer(),
+            ),
     );
   }
 }

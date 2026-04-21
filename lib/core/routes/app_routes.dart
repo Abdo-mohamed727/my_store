@@ -8,7 +8,8 @@ import 'package:my_store/features/admin/home_admin/presintation/screen/admin_hom
 import 'package:my_store/features/auth/presintation/cubit/bloc/auth_bloc.dart';
 import 'package:my_store/features/auth/presintation/screens/login_page.dart';
 import 'package:my_store/features/auth/presintation/screens/sign_up_page.dart';
-import 'package:my_store/features/coustomer/presintation/screens/coustomer_home_page.dart';
+import 'package:my_store/features/coustomer/main_screen/presintation/screens/main_screen.dart';
+import 'package:my_store/features/coustomer/home/presintation/screens/customer_search_screen.dart';
 
 class AppRoutes {
   static const String loginpage = '/';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const String signUpPage = 'Sign_up_page';
   static const String adminHomePage = 'Admin_home_page';
   static const String customerHomePage = 'Customer_home_page';
+  static const String customerSearch = 'Customer_search_page';
 
   static Route<void>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -29,7 +31,10 @@ class AppRoutes {
       case adminHomePage:
         return BaseRoute(page: const AdminHomePage());
       case customerHomePage:
-        return BaseRoute(page: const CoustomerHomePage());
+        return BaseRoute(page: const MainScreen());
+
+      case customerSearch:
+        return BaseRoute(page: const CustomerSearchScreen());
 
       case signUpPage:
         return BaseRoute(
