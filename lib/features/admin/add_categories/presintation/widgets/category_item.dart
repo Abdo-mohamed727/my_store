@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/app/di/injection_container.dart';
+import 'package:my_store/core/app/widgets/app_image_shimmer.dart';
 import 'package:my_store/core/app/widgets/coustom_container_admin.dart';
 import 'package:my_store/core/app/widgets/text_app.dart';
 import 'package:my_store/core/extensions/context_extensions.dart';
@@ -121,13 +122,20 @@ class CategoryItem extends StatelessWidget {
                         topRight: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       ),
-                      child: CachedNetworkImage(
-                        imageUrl: image,
-                        width: 120.w,
-                        height: 150.h,
-                        fit: BoxFit.cover,
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                      ),
+                      child: image.isNotEmpty
+                          ? CachedNetworkImage(
+                              imageUrl: image,
+                              width: 120.w,
+                              height: 150.h,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => const AppImageShimmer(),
+                              errorWidget: (context, url, error) =>
+                                  const AppImageShimmer(),
+                            )
+                          : const SizedBox(
+                              width: 120,
+                              child: AppImageShimmer(),
+                            ),
                     ),
                   ],
                 ),
