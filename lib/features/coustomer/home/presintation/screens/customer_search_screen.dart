@@ -25,8 +25,11 @@ class CustomerSearchScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.search_rounded,
-                color: ColorsDark.blueLight.withOpacity(0.4), size: 80.w),
+            Icon(
+              Icons.search_rounded,
+              color: ColorsDark.blueLight.withOpacity(0.4),
+              size: 80.w,
+            ),
             SizedBox(height: 16.h),
             Text(
               'Search coming soon',

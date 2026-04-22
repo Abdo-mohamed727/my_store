@@ -15,7 +15,7 @@ mutation DeleteUser($id: ID!) {
       'variables': {'id': "1"}, // just a test ID
     }),
   );
-  
+
   print('Status: ${response.statusCode}');
   print('Body: ${response.body}');
 }

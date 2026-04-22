@@ -10,6 +10,7 @@ import 'package:my_store/features/auth/presintation/screens/login_page.dart';
 import 'package:my_store/features/auth/presintation/screens/sign_up_page.dart';
 import 'package:my_store/features/coustomer/main_screen/presintation/screens/main_screen.dart';
 import 'package:my_store/features/coustomer/home/presintation/screens/customer_search_screen.dart';
+import 'package:my_store/features/coustomer/product_details/presintation/screens/product_details_screen.dart';
 
 class AppRoutes {
   static const String loginpage = '/';
@@ -18,6 +19,7 @@ class AppRoutes {
   static const String adminHomePage = 'Admin_home_page';
   static const String customerHomePage = 'Customer_home_page';
   static const String customerSearch = 'Customer_search_page';
+  static const String productDetails = 'Product_details_page';
 
   static Route<void>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -35,6 +37,9 @@ class AppRoutes {
 
       case customerSearch:
         return BaseRoute(page: const CustomerSearchScreen());
+      case productDetails:
+        final productId = settings.arguments as String? ?? '';
+        return BaseRoute(page: ProductDetailsScreen(productId: productId));
 
       case signUpPage:
         return BaseRoute(

@@ -93,7 +93,10 @@ class _NavBarItem extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOutQuint,
-        padding: EdgeInsets.symmetric(horizontal: isSelected ? 16.w : 12.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: isSelected ? 16.w : 12.w,
+          vertical: 8.h,
+        ),
         decoration: BoxDecoration(
           color: isSelected ? activeColor.withOpacity(0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(20.r),

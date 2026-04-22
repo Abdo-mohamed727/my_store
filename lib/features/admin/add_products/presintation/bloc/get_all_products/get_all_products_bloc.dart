@@ -8,8 +8,7 @@ import 'package:my_store/features/admin/add_products/presintation/bloc/get_all_p
 
 class GetAllProductsBloc
     extends Bloc<GetAllProductsEvent, GetAllProductsState> {
-  GetAllProductsBloc(this._repo)
-      : super(const GetAllProductsState.initial()) {
+  GetAllProductsBloc(this._repo) : super(const GetAllProductsState.initial()) {
     on<FetchGetAllProductsEvent>(_getAllProducts);
   }
 

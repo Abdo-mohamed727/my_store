@@ -29,10 +29,12 @@ import 'package:my_store/features/admin/users/data/repo/users_repo.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/get_all_users/get_all_users_bloc.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/search_users/search_users_bloc.dart';
 import 'package:my_store/features/admin/users/presintation/bloc/delete_user/delete_user_bloc.dart';
-import 'package:my_store/features/coustomer/home/data/datasources/home_local_data_source.dart';
 import 'package:my_store/features/coustomer/home/data/repositories/home_repository_impl.dart';
-import 'package:my_store/features/coustomer/home/domain/repositories/home_repository.dart';
 import 'package:my_store/features/coustomer/home/presintation/bloc/home/home_cubit.dart';
+import 'package:my_store/features/coustomer/product_details/data/datasources/product_details_remote_data_source.dart';
+import 'package:my_store/features/coustomer/product_details/data/repositories/product_details_repository_impl.dart';
+import 'package:my_store/features/coustomer/product_details/presintation/bloc/product_details_bloc.dart';
+
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
@@ -43,6 +45,7 @@ Future<void> setupInjector() async {
   await _initDashboardAdmin();
   await _initUsers();
   await _initCustomerHome();
+  await _initProductDetails();
 }
 
 Future<void> _initcore() async {
@@ -102,9 +105,21 @@ Future<void> _initUsers() async {
 Future<void> _initCustomerHome() async {
   sl
     ..registerFactory(() => HomeCubit(sl()))
-    ..registerLazySingleton(HomeLocalDataSource.new)
     ..registerLazySingleton<HomeRepositoryImpl>(
-      () => HomeRepositoryImpl(sl()),
+      () => HomeRepositoryImpl(
+        addProductsRepo: sl(),
+        addCategoriesRepo: sl(),
+      ),
+    );
+}
+
+Future<void> _initProductDetails() async {
+  sl
+    ..registerFactory(() => ProductDetailsBloc(sl()))
+    ..registerLazySingleton<ProductDetailsDataSource>(
+      () => ProductDetailsDataSource(sl()),
     )
-    ..registerLazySingleton<HomeRepository>(() => sl<HomeRepositoryImpl>());
+    ..registerLazySingleton<ProductDetailsRepositoryImpl>(
+      () => ProductDetailsRepositoryImpl(remoteDataSource: sl()),
+    );
 }

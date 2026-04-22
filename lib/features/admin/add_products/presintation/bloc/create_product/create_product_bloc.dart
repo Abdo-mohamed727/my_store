@@ -7,8 +7,7 @@ import 'package:my_store/features/admin/add_products/data/repo/add_products_repo
 import 'package:my_store/features/admin/add_products/presintation/bloc/create_product/create_product_event.dart';
 import 'package:my_store/features/admin/add_products/presintation/bloc/create_product/create_product_state.dart';
 
-class CreateProductBloc
-    extends Bloc<CreateProductEvent, CreateProductState> {
+class CreateProductBloc extends Bloc<CreateProductEvent, CreateProductState> {
   CreateProductBloc(this._repo) : super(const CreateProductState.initial()) {
     on<CreateProductEvent>(_onEvent);
   }

@@ -46,8 +46,8 @@ class _ProductsList extends StatelessWidget {
         child: Text(
           'No products found',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.white70,
-              ),
+            color: Colors.white70,
+          ),
         ),
       );
     }
@@ -75,8 +75,8 @@ class _ProductsError extends StatelessWidget {
           message,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.redAccent,
-              ),
+            color: Colors.redAccent,
+          ),
         ),
       ),
     );

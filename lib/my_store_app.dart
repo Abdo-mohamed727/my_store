@@ -37,42 +37,35 @@ class MyApp extends StatelessWidget {
                   builder: (context, state) {
                     final cubit = context.read<AppCubitCubit>();
 
-                    return BlocBuilder<AuthBloc, AuthState>(
-                      buildWhen: (prev, current) => current is SuccessState,
-                      builder: (context, state) {
-                        return MaterialApp(
-                          debugShowCheckedModeBanner: false,
-                          title: 'Flutter Demo',
-                          theme: cubit.isDark ? themeDark() : themeLight(),
-                          locale: Locale(cubit.currentLangCode),
-                          localizationsDelegates:
-                              AppLocalizationsSetup.localizationsDelegates,
-                          supportedLocales:
-                              AppLocalizationsSetup.supportedLocales,
-                          localeResolutionCallback:
-                              AppLocalizationsSetup.localeResolutionCallback,
-                          builder: (context, widget) {
-                            return Scaffold(
-                              body: Builder(
-                                builder: (context) {
-                                  ConnectivityController.instance.init();
+                    return MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Flutter Demo',
+                      theme: cubit.isDark ? themeDark() : themeLight(),
+                      locale: Locale(cubit.currentLangCode),
+                      localizationsDelegates:
+                          AppLocalizationsSetup.localizationsDelegates,
+                      supportedLocales: AppLocalizationsSetup.supportedLocales,
+                      localeResolutionCallback:
+                          AppLocalizationsSetup.localeResolutionCallback,
+                      builder: (context, widget) {
+                        return Scaffold(
+                          body: Builder(
+                            builder: (context) {
+                              ConnectivityController.instance.init();
 
-                                  return widget!;
-                                },
-                              ),
-                            );
-                          },
-                          onGenerateRoute: AppRoutes.onGenerateRoute,
-                          initialRoute:
-                              SharedPref().getString(ShareKeys.accesstoken) !=
-                                      null
-                                  ? SharedPref().getString(ShareKeys.userRole) ==
-                                          'admin'
-                                      ? AppRoutes.adminHomePage
-                                      : AppRoutes.customerHomePage
-                                  : AppRoutes.loginpage,
+                              return widget!;
+                            },
+                          ),
                         );
                       },
+                      onGenerateRoute: AppRoutes.onGenerateRoute,
+                      initialRoute:
+                          SharedPref().getString(ShareKeys.accesstoken) != null
+                          ? SharedPref().getString(ShareKeys.userRole) ==
+                                    'admin'
+                                ? AppRoutes.adminHomePage
+                                : AppRoutes.customerHomePage
+                          : AppRoutes.loginpage,
                     );
                   },
                 ),

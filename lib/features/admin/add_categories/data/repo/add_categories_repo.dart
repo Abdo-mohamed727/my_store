@@ -20,8 +20,9 @@ class AddCategoriesRepo {
     }
   }
 
-  Future<ApiResult<CreateCategoryResponse>> createCategory(
-      {required CreateCategoryRequestBody body}) async {
+  Future<ApiResult<CreateCategoryResponse>> createCategory({
+    required CreateCategoryRequestBody body,
+  }) async {
     try {
       final response = await _dataSource.createCategory(body: body);
       return ApiResult.success(response);
@@ -30,8 +31,9 @@ class AddCategoriesRepo {
     }
   }
 
-  Future<ApiResult<UpdateCategoryResponse>> updateCategory(
-      {required UpdateCategoryRequestBody body}) async {
+  Future<ApiResult<UpdateCategoryResponse>> updateCategory({
+    required UpdateCategoryRequestBody body,
+  }) async {
     try {
       final response = await _dataSource.updateCategory(body: body);
       return ApiResult.success(response);
@@ -40,8 +42,7 @@ class AddCategoriesRepo {
     }
   }
 
-  Future<ApiResult<dynamic>> deleteCategory(
-      {required String id}) async {
+  Future<ApiResult<dynamic>> deleteCategory({required String id}) async {
     try {
       await _dataSource.deleteCategory(id: id);
       return const ApiResult.success("Deleted");

@@ -86,8 +86,9 @@ class _BannerCarouselState extends State<BannerCarousel> {
           width: isActive ? 20.w : 6.w,
           height: 6.h,
           decoration: BoxDecoration(
-            color:
-                isActive ? ColorsDark.blueDark : ColorsDark.white.withOpacity(0.3),
+            color: isActive
+                ? ColorsDark.blueDark
+                : ColorsDark.white.withOpacity(0.3),
             borderRadius: BorderRadius.circular(3.r),
           ),
         );

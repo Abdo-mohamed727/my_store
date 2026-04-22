@@ -101,8 +101,8 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                 builder: (context, state) {
                   final cubit = context.read<UploadImageCubit>();
                   final bool isImageLoaded = cubit.imageUrl.isNotEmpty;
-                  final imageUrlToShow = isImageLoaded 
-                      ? cubit.imageUrl 
+                  final imageUrlToShow = isImageLoaded
+                      ? cubit.imageUrl
                       : (widget.initialImage ?? '');
                   final hasImageToShow = imageUrlToShow.isNotEmpty;
 
@@ -129,7 +129,9 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                           onPressed: () {
                             context.read<UploadImageCubit>().uploadImage();
                           },
-                          text: hasImageToShow ? 'Change Image' : 'Upload Image',
+                          text: hasImageToShow
+                              ? 'Change Image'
+                              : 'Upload Image',
                           width: double.infinity,
                           height: 45.h,
                         ),
@@ -184,7 +186,8 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
                   builder: (context, createReqState) {
                     return BlocBuilder<UpdateCategoryBloc, UpdateCategoryState>(
                       builder: (context, updateReqState) {
-                        final isLoading = createReqState.maybeWhen(
+                        final isLoading =
+                            createReqState.maybeWhen(
                               loading: () => true,
                               orElse: () => false,
                             ) ||
@@ -195,61 +198,66 @@ class _AddCategoryBottomSheetState extends State<AddCategoryBottomSheet> {
 
                         if (isLoading) {
                           return const Center(
-                              child: CircularProgressIndicator());
+                            child: CircularProgressIndicator(),
+                          );
                         }
 
                         return CustomButton(
-                      backgroundColor: context.myColors.bluePinkDark,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final imageUrl = context.read<UploadImageCubit>().imageUrl;
-                          final finalImageUrl = imageUrl.isNotEmpty ? imageUrl : (widget.initialImage ?? '');
+                          backgroundColor: context.myColors.bluePinkDark,
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              final imageUrl = context
+                                  .read<UploadImageCubit>()
+                                  .imageUrl;
+                              final finalImageUrl = imageUrl.isNotEmpty
+                                  ? imageUrl
+                                  : (widget.initialImage ?? '');
 
-                          if (finalImageUrl.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Please upload an image'),
-                              ),
-                            );
-                            return;
-                          }
+                              if (finalImageUrl.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Please upload an image'),
+                                  ),
+                                );
+                                return;
+                              }
 
-                          if (isUpdate) {
-                            context.read<UpdateCategoryBloc>().add(
-                              UpdateCategoryEvent.updateCategory(
-                                body: UpdateCategoryRequestBody(
-                                  id: widget.categoryId!,
-                                  name: _nameController.text,
-                                  image: finalImageUrl,
-                                ),
-                              ),
-                            );
-                          } else {
-                            context.read<CreateCategoryBloc>().add(
-                              CreateCategoryEvent.createCategory(
-                                body: CreateCategoryRequestBody(
-                                  name: _nameController.text,
-                                  image: finalImageUrl,
-                                ),
-                              ),
-                            );
-                          }
-                        }
+                              if (isUpdate) {
+                                context.read<UpdateCategoryBloc>().add(
+                                  UpdateCategoryEvent.updateCategory(
+                                    body: UpdateCategoryRequestBody(
+                                      id: widget.categoryId!,
+                                      name: _nameController.text,
+                                      image: finalImageUrl,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                context.read<CreateCategoryBloc>().add(
+                                  CreateCategoryEvent.createCategory(
+                                    body: CreateCategoryRequestBody(
+                                      name: _nameController.text,
+                                      image: finalImageUrl,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          text: isUpdate ? 'Update Category' : 'Add Category',
+                          width: double.infinity,
+                          height: 45.h,
+                          lastRadius: 10,
+                          threeRadius: 10,
+                        );
                       },
-                      text: isUpdate ? 'Update Category' : 'Add Category',
-                      width: double.infinity,
-                      height: 45.h,
-                      lastRadius: 10,
-                      threeRadius: 10,
                     );
                   },
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -290,4 +298,3 @@ void showAddCategoryBottomSheet(
     },
   );
 }
-
