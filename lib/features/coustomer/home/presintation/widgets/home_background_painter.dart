@@ -30,36 +30,38 @@ class _HomePainter extends CustomPainter {
       ..close();
 
     final diagonalPaint = Paint()
-      ..shader = const LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color(0xFF28A8E4),
-          Color(0xFF4567E8),
-        ],
-      ).createShader(
-        Rect.fromLTWH(
-          size.width * 0.08,
-          size.height * 0.30,
-          size.width * 0.92,
-          size.height * 0.70,
-        ),
-      );
+      ..shader =
+          const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF28A8E4),
+              Color(0xFF4567E8),
+            ],
+          ).createShader(
+            Rect.fromLTWH(
+              size.width * 0.08,
+              size.height * 0.30,
+              size.width * 0.92,
+              size.height * 0.70,
+            ),
+          );
 
     canvas.drawPath(diagonalPath, diagonalPaint);
 
     final glowPaint = Paint()
-      ..shader = RadialGradient(
-        colors: [
-          Colors.white.withOpacity(0.10),
-          Colors.transparent,
-        ],
-      ).createShader(
-        Rect.fromCircle(
-          center: Offset(size.width * 0.78, size.height * 0.78),
-          radius: size.width * 0.42,
-        ),
-      );
+      ..shader =
+          RadialGradient(
+            colors: [
+              Colors.white.withOpacity(0.10),
+              Colors.transparent,
+            ],
+          ).createShader(
+            Rect.fromCircle(
+              center: Offset(size.width * 0.78, size.height * 0.78),
+              radius: size.width * 0.42,
+            ),
+          );
 
     canvas.drawCircle(
       Offset(size.width * 0.78, size.height * 0.78),

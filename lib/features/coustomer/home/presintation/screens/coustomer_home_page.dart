@@ -38,8 +38,7 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController()
-      ..addListener(_onScroll);
+    _scrollController = ScrollController()..addListener(_onScroll);
   }
 
   void _onScroll() {
@@ -78,12 +77,12 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
                     loading: () => const HomeShimmer(),
                     loaded: (banners, categories, products, favoriteIds) =>
                         _buildLoadedContent(
-                      context,
-                      banners: banners,
-                      categories: categories,
-                      products: products,
-                      favoriteIds: favoriteIds,
-                    ),
+                          context,
+                          banners: banners,
+                          categories: categories,
+                          products: products,
+                          favoriteIds: favoriteIds,
+                        ),
                     error: (message) => HomeEmptyState(
                       message: message,
                       onRetry: () => context.read<HomeCubit>().loadHomeData(),
@@ -108,8 +107,11 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
               ),
-              child: Icon(Icons.keyboard_arrow_up_rounded,
-                  color: ColorsDark.white, size: 24.w),
+              child: Icon(
+                Icons.keyboard_arrow_up_rounded,
+                color: ColorsDark.white,
+                size: 24.w,
+              ),
             ),
           ),
         ),
@@ -213,7 +215,13 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
                       .read<HomeCubit>()
                       .toggleFavorite(product.id ?? ''),
                   onShare: () => _shareProduct(product),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.productDetails,
+                      arguments: product.id ?? '',
+                    );
+                  },
                 );
               },
               childCount: products.length,
@@ -232,7 +240,8 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
     unawaited(
       SharePlus.instance.share(
         ShareParams(
-          text: 'Check out this product: $title '
+          text:
+              'Check out this product: $title '
               'for \$${price.toStringAsFixed(0)}!',
         ),
       ),

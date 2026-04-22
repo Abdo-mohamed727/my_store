@@ -5,6 +5,7 @@ import 'package:my_store/features/admin/add_products/data/models/create_product_
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
 import 'package:my_store/features/admin/add_products/data/models/update_product_request_body.dart';
 import 'package:my_store/features/admin/add_products/data/models/update_product_response.dart';
+
 class AddProductsDataSource {
   AddProductsDataSource(this._apiService);
 
@@ -32,8 +33,9 @@ class AddProductsDataSource {
     return response;
   }
 
-  Future<UpdateProductResponse> updateProduct(
-      {required UpdateProductRequestBody body}) async {
+  Future<UpdateProductResponse> updateProduct({
+    required UpdateProductRequestBody body,
+  }) async {
     final response = await _apiService.updateProduct(
       AdminQueries().updateProductQuery(
         id: body.id,

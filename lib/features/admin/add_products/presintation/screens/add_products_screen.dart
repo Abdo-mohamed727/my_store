@@ -22,7 +22,8 @@ class AddProductsScreen extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              sl<GetAllCategoriesBloc>()..add(const GetAllCategoriesEvent.fetch()),
+              sl<GetAllCategoriesBloc>()
+                ..add(const GetAllCategoriesEvent.fetch()),
         ),
       ],
       child: const Scaffold(

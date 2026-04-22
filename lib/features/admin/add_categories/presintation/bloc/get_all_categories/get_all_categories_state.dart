@@ -7,6 +7,9 @@ part 'get_all_categories_state.freezed.dart';
 class GetAllCategoriesState with _$GetAllCategoriesState {
   const factory GetAllCategoriesState.initial() = _Initial;
   const factory GetAllCategoriesState.loading() = _Loading;
-  const factory GetAllCategoriesState.success({required GetAllCategoriesResponse response}) = _Success;
-  const factory GetAllCategoriesState.error({required String errorMessage}) = _Error;
+  const factory GetAllCategoriesState.success({
+    required GetAllCategoriesResponse response,
+  }) = _Success;
+  const factory GetAllCategoriesState.error({required String errorMessage}) =
+      _Error;
 }

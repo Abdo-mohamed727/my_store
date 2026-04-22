@@ -18,16 +18,18 @@ class AddCategoriesDataSource {
     return response;
   }
 
-  Future<CreateCategoryResponse> createCategory(
-      {required CreateCategoryRequestBody body}) async {
+  Future<CreateCategoryResponse> createCategory({
+    required CreateCategoryRequestBody body,
+  }) async {
     final response = await _apiService.createCategory(
       AdminQueries().createCategoryQuery(name: body.name, image: body.image),
     );
     return response;
   }
 
-  Future<UpdateCategoryResponse> updateCategory(
-      {required UpdateCategoryRequestBody body}) async {
+  Future<UpdateCategoryResponse> updateCategory({
+    required UpdateCategoryRequestBody body,
+  }) async {
     final response = await _apiService.updateCategory(
       AdminQueries().updateCategoryQuery(
         id: body.id,

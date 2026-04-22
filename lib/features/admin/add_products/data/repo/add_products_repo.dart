@@ -35,8 +35,9 @@ class AddProductsRepo {
     }
   }
 
-  Future<ApiResult<UpdateProductResponse>> updateProduct(
-      {required UpdateProductRequestBody body}) async {
+  Future<ApiResult<UpdateProductResponse>> updateProduct({
+    required UpdateProductRequestBody body,
+  }) async {
     try {
       final response = await _dataSource.updateProduct(body: body);
       return ApiResult.success(response);

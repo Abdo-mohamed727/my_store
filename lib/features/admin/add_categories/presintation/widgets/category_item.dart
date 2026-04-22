@@ -15,7 +15,12 @@ import 'package:my_store/features/admin/add_categories/presintation/bloc/get_all
 import 'package:my_store/features/admin/add_categories/presintation/widgets/add_category_bottom_sheet.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({required this.name, required this.image, required this.id, super.key});
+  const CategoryItem({
+    required this.name,
+    required this.image,
+    required this.id,
+    super.key,
+  });
 
   final String name;
   final String image;
@@ -84,9 +89,15 @@ class CategoryItem extends StatelessWidget {
                                       initialImage: image,
                                     );
                                   },
-                                  icon: const Icon(Icons.edit, color: Colors.white),
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                BlocBuilder<DeleteCategoryBloc, DeleteCategoryState>(
+                                BlocBuilder<
+                                  DeleteCategoryBloc,
+                                  DeleteCategoryState
+                                >(
                                   builder: (context, state) {
                                     return state.maybeWhen(
                                       loading: () => const Padding(
@@ -103,10 +114,15 @@ class CategoryItem extends StatelessWidget {
                                       orElse: () => IconButton(
                                         onPressed: () {
                                           context.read<DeleteCategoryBloc>().add(
-                                            DeleteCategoryEvent.deleteCategory(id: id),
+                                            DeleteCategoryEvent.deleteCategory(
+                                              id: id,
+                                            ),
                                           );
                                         },
-                                        icon: const Icon(Icons.delete, color: Colors.red),
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     );
                                   },
@@ -128,7 +144,8 @@ class CategoryItem extends StatelessWidget {
                               width: 120.w,
                               height: 150.h,
                               fit: BoxFit.cover,
-                              placeholder: (context, url) => const AppImageShimmer(),
+                              placeholder: (context, url) =>
+                                  const AppImageShimmer(),
                               errorWidget: (context, url, error) =>
                                   const AppImageShimmer(),
                             )
@@ -142,7 +159,7 @@ class CategoryItem extends StatelessWidget {
               ),
             ),
           );
-        }
+        },
       ),
     );
   }

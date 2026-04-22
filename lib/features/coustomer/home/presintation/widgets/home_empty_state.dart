@@ -45,7 +45,9 @@ class HomeEmptyState extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   padding: EdgeInsets.symmetric(
-                      horizontal: 32.w, vertical: 12.h),
+                    horizontal: 32.w,
+                    vertical: 12.h,
+                  ),
                 ),
                 child: Text(
                   'Retry',

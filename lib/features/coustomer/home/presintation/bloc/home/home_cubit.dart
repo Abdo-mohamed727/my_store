@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/features/coustomer/home/data/repositories/home_repository_impl.dart';
 import 'package:my_store/features/coustomer/home/presintation/bloc/home/home_state.dart';
-import 'package:my_store/features/coustomer/home/domain/repositories/home_repository.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepository) : super(const HomeState.initial());
 
-  final HomeRepository _homeRepository;
+  final HomeRepositoryImpl _homeRepository;
 
   Future<void> loadHomeData() async {
     emit(const HomeState.loading());

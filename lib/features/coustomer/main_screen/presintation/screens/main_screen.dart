@@ -4,8 +4,6 @@ import '../bloc/navigation/navigation_cubit.dart';
 import '../../../../../../core/utils/enums.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 
-
-
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 

@@ -58,7 +58,7 @@ class CategoryChip extends StatelessWidget {
   }
 
   Widget _buildImage() {
-    final url = category.imageUrl;
+    final url = category.image;
     if (url.startsWith('assets/')) {
       return Image.asset(
         url,

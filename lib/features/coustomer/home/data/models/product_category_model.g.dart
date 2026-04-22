@@ -11,7 +11,7 @@ ProductCategoryModel _$ProductCategoryModelFromJson(
 ) => ProductCategoryModel(
   id: json['id'] as String,
   name: json['name'] as String,
-  imageUrl: json['imageUrl'] as String,
+  image: json['image'] as String,
 );
 
 Map<String, dynamic> _$ProductCategoryModelToJson(
@@ -19,5 +19,5 @@ Map<String, dynamic> _$ProductCategoryModelToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
-  'imageUrl': instance.imageUrl,
+  'image': instance.image,
 };

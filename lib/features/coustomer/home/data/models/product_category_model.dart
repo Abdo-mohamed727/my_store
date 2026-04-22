@@ -7,12 +7,12 @@ class ProductCategoryModel {
   const ProductCategoryModel({
     required this.id,
     required this.name,
-    required this.imageUrl,
+    required this.image,
   });
 
   final String id;
   final String name;
-  final String imageUrl;
+  final String image;
 
   factory ProductCategoryModel.fromJson(Map<String, dynamic> json) =>
       _$ProductCategoryModelFromJson(json);
