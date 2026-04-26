@@ -13,6 +13,7 @@ import 'package:my_store/features/admin/dashboard/data/models/user_number_respon
 import 'package:my_store/features/auth/data/models/login_response_body.dart';
 import 'package:my_store/features/auth/data/models/sign_up_response.dart';
 import 'package:my_store/features/auth/data/models/user_role_response.dart';
+import 'package:my_store/features/coustomer/category_products/data/models/category_product_model.dart';
 import 'package:my_store/features/coustomer/product_details/data/models/product_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -99,6 +100,11 @@ abstract class ApiService {
 
   @POST(graphQl)
   Future<ProductDetailsResponse> productDetails(
+    @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphQl)
+  Future<CategoryProductsResponse> getProductsByCategory(
     @Body() Map<String, dynamic> query,
   );
 }

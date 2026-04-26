@@ -36,6 +36,10 @@ import 'package:my_store/features/coustomer/product_details/data/repositories/pr
 import 'package:my_store/features/coustomer/product_details/presintation/bloc/product_details_bloc.dart';
 import 'package:my_store/features/coustomer/profile/data/datasources/profile_local_data_source.dart';
 import 'package:my_store/features/coustomer/profile/presintation/bloc/profile_bloc.dart';
+import 'package:my_store/features/coustomer/category_products/data/data_sources/category_products_remote_data_source.dart';
+import 'package:my_store/features/coustomer/category_products/data/repositories/category_products_repository_impl.dart';
+import 'package:my_store/features/coustomer/category_products/domain/repositories/category_products_repository.dart';
+import 'package:my_store/features/coustomer/category_products/presintation/bloc/category_products_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -49,6 +53,7 @@ Future<void> setupInjector() async {
   await _initCustomerHome();
   await _initProductDetails();
   await _initCustomerProfile();
+  await _initCategoryProducts();
 }
 
 Future<void> _initcore() async {
@@ -131,4 +136,15 @@ Future<void> _initCustomerProfile() async {
   sl
     ..registerFactory(() => ProfileBloc(sl()))
     ..registerLazySingleton(() => ProfileLocalDataSource());
+}
+
+Future<void> _initCategoryProducts() async {
+  sl
+    ..registerFactory(() => CategoryProductsBloc(sl()))
+    ..registerLazySingleton<CategoryProductsRemoteDataSource>(
+      () => CategoryProductsRemoteDataSourceImpl(sl()),
+    )
+    ..registerLazySingleton<CategoryProductsRepository>(
+      () => CategoryProductsRepositoryImpl(sl()),
+    );
 }
