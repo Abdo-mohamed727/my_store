@@ -6,6 +6,7 @@ Auto-generated from all feature plans. Last updated: 2026-04-26
 - Dart / Flutter + `flutter_bloc`, `bloc`, `flutter_screenutil`, `get_it`, project theme extensions in `lib/core/style/` (004-profile-settings-screen)
 - N/A for MVP plan; no persistence required (004-profile-settings-screen)
 - Dart 3 / Flutter + `flutter_bloc`, `bloc`, `freezed`, `json_serializable`, `cached_network_image`, `flutter_screenutil`, `get_it` (dev)
+- Dart 3 / Flutter + `flutter_bloc`, `freezed`, `json_serializable`, `flutter_screenutil`, `cached_network_image`, `get_it` (006-category-products)
 
 - Dart / Flutter + `flutter_bloc`, `bloc`, `freezed`, `json_serializable`, `cached_network_image`, `flutter_screenutil`, `get_it` (003-product-details)
 
@@ -25,10 +26,10 @@ tests/
 Dart / Flutter: Follow standard conventions
 
 ## Recent Changes
+- 006-category-products: Added Dart 3 / Flutter + `flutter_bloc`, `freezed`, `json_serializable`, `flutter_screenutil`, `cached_network_image`, `get_it`
 - dev: Added Dart 3 / Flutter + `flutter_bloc`, `bloc`, `freezed`, `json_serializable`, `cached_network_image`, `flutter_screenutil`, `get_it`
 - 004-profile-settings-screen: Added Dart / Flutter + `flutter_bloc`, `bloc`, `flutter_screenutil`, `get_it`, project theme extensions in `lib/core/style/`
 
-- 003-product-details: Added Dart / Flutter + `flutter_bloc`, `bloc`, `freezed`, `json_serializable`, `cached_network_image`, `flutter_screenutil`, `get_it`
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

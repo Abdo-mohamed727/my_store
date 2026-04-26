@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_store/features/coustomer/categories/presintation/screens/coustomer_categories_screen.dart';
+import 'package:my_store/features/coustomer/categories/presintation/screens/categories_screen.dart';
 import 'package:my_store/features/coustomer/favourite/presintation/screens/coustomer_favourite_screen.dart';
 import 'package:my_store/features/coustomer/home/presintation/screens/coustomer_home_page.dart';
 import 'package:my_store/features/coustomer/products/presintation/screens/coustomer_products_screen.dart';
@@ -12,7 +12,7 @@ class NavigationCubit extends Cubit<MainTab> {
 
   final List<Widget> screens = const [
     CoustomerHomePage(),
-    CoustomerCategoriesScreen(),
+    CategoriesScreen(),
     CoustomerProductsScreen(),
     CoustomerFavouriteScreen(),
     CoustomerProfileScreen(),
