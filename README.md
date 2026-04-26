@@ -18,6 +18,7 @@ The project follows **Clean Architecture**, reusable components, and best practi
 ![Roles](https://img.shields.io/badge/Roles-Admin%20%26%20User-purple?style=for-the-badge)
 ![Theme](https://img.shields.io/badge/Theme-Dark%2FLight-black?style=for-the-badge)
 ![Language](https://img.shields.io/badge/Language-Multi--Language-orange?style=for-the-badge)
+![Customer Panel](https://img.shields.io/badge/Panel-Customer-teal?style=for-the-badge&logo=shopify)
 
 ### 🔐 User Features
 - 🔐 Authentication (Login / Register)
@@ -43,6 +44,33 @@ The project follows **Clean Architecture**, reusable components, and best practi
 - ❌ Delete  
 
 ---
+### 🛍️ Customer Panel
+
+#### 🏠 Home Screen
+- 🔥 View featured and latest products
+- 🎯 Quick access to categories
+- 🔍 Search for products
+
+#### 🗂️ Categories
+- 📋 Browse all available categories
+- 🔎 Filter products by category
+- 🖼️ Visual category cards
+
+#### 📦 Product Details
+- 🖼️ View product images
+- 📝 Full product description
+- 💰 Price display
+- 🛒 Add to Cart button
+
+#### 🛒 Cart
+- ➕ Increase / ➖ Decrease item quantity
+- ❌ Remove items from cart
+- 💳 Proceed to checkout
+
+#### 👤 Profile
+- 📋 View personal info
+- ✏️ Edit profile details
+- 🚪 Logout
 
 ## 🛠️ Tech Stack
 
@@ -113,8 +141,12 @@ The project follows **Clean Architecture**, reusable components, and best practi
 <p align="center">
 <img src="https://github.com/user-attachments/assets/cb3e1765-c74b-4a6b-9130-fd0c637de673" width="250" />
 </p>
+------
+### Coustmer Category
 
-
+| Screen 1 | Screen 2 | Screen 3 |
+|------------|------|--------|
+| <img  src="https://github.com/user-attachments/assets/a7c83611-327c-4723-ac2e-cac441b8006e" width="250" />|<img  src="https://github.com/user-attachments/assets/34c12b71-c9e0-4544-b313-7594b5e59650"  width="250"/>| <img  src="https://github.com/user-attachments/assets/da2cd343-dfb1-42fd-a49e-467e11049f6a"  width="250"/>|
 
 ## 📌 Notes
 - Built with ❤️ using Flutter
