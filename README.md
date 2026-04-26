@@ -95,6 +95,10 @@ The project follows **Clean Architecture**, reusable components, and best practi
 | <img src="https://github.com/user-attachments/assets/0bdcbffb-a008-41af-a3ac-8e87275eeb7e" width="250"/> | <img src="https://github.com/user-attachments/assets/1e245b7f-9f96-4197-accd-7d101725ab53" width="250"/> | <img src="https://github.com/user-attachments/assets/b910b9d2-ebe3-443a-bd12-e66f1f26e37c" width="250"/> |
 
 ---
+### Home Screen
+ <img width="1440" height="3120" alt="Screenshot_1777208286" src="https://github.com/user-attachments/assets/13f6dfb6-3312-4faa-8c2e-27cfb2efe1c8" />
+
+
 
 ### 👤 Users Management
 
