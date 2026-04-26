@@ -7,6 +7,9 @@ class UserRoleResponse {
   UserRoleResponse({
     required this.userRole,
     required this.userId,
+    required this.name,
+    required this.email,
+    required this.avatar,
   });
 
   factory UserRoleResponse.fromJson(Map<String, dynamic> json) =>
@@ -17,6 +20,15 @@ class UserRoleResponse {
 
   @JsonKey(name: 'id')
   final int? userId;
+
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @JsonKey(name: 'email')
+  final String? email;
+
+  @JsonKey(name: 'avatar')
+  final String? avatar;
 
   Map<String, dynamic> toJson() => _$UserRoleResponseToJson(this);
 }

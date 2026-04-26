@@ -34,6 +34,8 @@ import 'package:my_store/features/coustomer/home/presintation/bloc/home/home_cub
 import 'package:my_store/features/coustomer/product_details/data/datasources/product_details_remote_data_source.dart';
 import 'package:my_store/features/coustomer/product_details/data/repositories/product_details_repository_impl.dart';
 import 'package:my_store/features/coustomer/product_details/presintation/bloc/product_details_bloc.dart';
+import 'package:my_store/features/coustomer/profile/data/datasources/profile_local_data_source.dart';
+import 'package:my_store/features/coustomer/profile/presintation/bloc/profile_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -46,6 +48,7 @@ Future<void> setupInjector() async {
   await _initUsers();
   await _initCustomerHome();
   await _initProductDetails();
+  await _initCustomerProfile();
 }
 
 Future<void> _initcore() async {
@@ -122,4 +125,10 @@ Future<void> _initProductDetails() async {
     ..registerLazySingleton<ProductDetailsRepositoryImpl>(
       () => ProductDetailsRepositoryImpl(remoteDataSource: sl()),
     );
+}
+
+Future<void> _initCustomerProfile() async {
+  sl
+    ..registerFactory(() => ProfileBloc(sl()))
+    ..registerLazySingleton(() => ProfileLocalDataSource());
 }

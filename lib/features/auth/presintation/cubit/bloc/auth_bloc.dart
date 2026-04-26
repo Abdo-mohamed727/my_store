@@ -44,6 +44,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         DioFactory.updateAuthToken(token);
         final user = await authRepo.userRole(token);
         await SharedPref().setInt(ShareKeys.userId, user.userId ?? 0);
+        await SharedPref().setString(ShareKeys.userRole, user.userRole ?? '');
+        await SharedPref().setString(ShareKeys.userName, user.name ?? '');
+        await SharedPref().setString(ShareKeys.userEmail, user.email ?? '');
+        await SharedPref().setString(ShareKeys.userAvatar, user.avatar ?? '');
 
         emit(AuthState.success(userRole: user.userRole ?? ''));
       },
