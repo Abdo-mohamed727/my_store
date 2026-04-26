@@ -11,6 +11,9 @@ import 'package:my_store/features/auth/presintation/screens/sign_up_page.dart';
 import 'package:my_store/features/coustomer/main_screen/presintation/screens/main_screen.dart';
 import 'package:my_store/features/coustomer/home/presintation/screens/customer_search_screen.dart';
 import 'package:my_store/features/coustomer/product_details/presintation/screens/product_details_screen.dart';
+import 'package:my_store/features/coustomer/category_products/presintation/bloc/category_products_bloc.dart';
+import 'package:my_store/features/coustomer/category_products/presintation/bloc/category_products_event.dart';
+import 'package:my_store/features/coustomer/category_products/presintation/screens/category_products_screen.dart';
 
 class AppRoutes {
   static const String loginpage = '/';
@@ -20,6 +23,7 @@ class AppRoutes {
   static const String customerHomePage = 'Customer_home_page';
   static const String customerSearch = 'Customer_search_page';
   static const String productDetails = 'Product_details_page';
+  static const String categoryProducts = 'Category_products_page';
 
   static Route<void>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -40,6 +44,17 @@ class AppRoutes {
       case productDetails:
         final productId = settings.arguments as String? ?? '';
         return BaseRoute(page: ProductDetailsScreen(productId: productId));
+      
+      case categoryProducts:
+        final args = settings.arguments as Map<String, dynamic>? ?? {};
+        final categoryId = args['categoryId'] as int? ?? 0;
+        final categoryName = args['categoryName'] as String? ?? '';
+        return BaseRoute(
+          page: BlocProvider(
+            create: (context) => sl<CategoryProductsBloc>()..add(CategoryProductsEvent.fetchProducts(categoryId: categoryId)),
+            child: CategoryProductsScreen(categoryId: categoryId, categoryName: categoryName),
+          ),
+        );
 
       case signUpPage:
         return BaseRoute(
