@@ -40,6 +40,9 @@ import 'package:my_store/features/coustomer/category_products/data/data_sources/
 import 'package:my_store/features/coustomer/category_products/data/repositories/category_products_repository_impl.dart';
 import 'package:my_store/features/coustomer/category_products/domain/repositories/category_products_repository.dart';
 import 'package:my_store/features/coustomer/category_products/presintation/bloc/category_products_bloc.dart';
+import 'package:my_store/features/coustomer/categories/data/datasources/categories_remote_data_source.dart';
+import 'package:my_store/features/coustomer/categories/data/repositories/categories_repository.dart';
+import 'package:my_store/features/coustomer/categories/presintation/bloc/categories_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -54,6 +57,7 @@ Future<void> setupInjector() async {
   await _initProductDetails();
   await _initCustomerProfile();
   await _initCategoryProducts();
+  await _initCustomerCategories();
 }
 
 Future<void> _initcore() async {
@@ -147,4 +151,13 @@ Future<void> _initCategoryProducts() async {
     ..registerLazySingleton<CategoryProductsRepository>(
       () => CategoryProductsRepositoryImpl(sl()),
     );
+}
+
+Future<void> _initCustomerCategories() async {
+  sl
+    ..registerFactory(() => CategoriesBloc(sl()))
+    ..registerLazySingleton<CategoriesRemoteDataSource>(
+      () => CategoriesRemoteDataSourceImpl(sl()),
+    )
+    ..registerLazySingleton(() => CategoriesRepository(sl()));
 }
