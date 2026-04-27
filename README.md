@@ -148,6 +148,12 @@ The project follows **Clean Architecture**, reusable components, and best practi
 |------------|------|--------|
 | <img  src="https://github.com/user-attachments/assets/a7c83611-327c-4723-ac2e-cac441b8006e" width="250" />|<img  src="https://github.com/user-attachments/assets/34c12b71-c9e0-4544-b313-7594b5e59650"  width="250"/>| <img  src="https://github.com/user-attachments/assets/da2cd343-dfb1-42fd-a49e-467e11049f6a"  width="250"/>|
 
+## Cart Screen 
+<p align="center">
+<img src="https://github.com/user-attachments/assets/1a19e5f1-0b88-4bdf-9c0f-4fdec1c12dc9"  width="250"  />
+
+</p>
+
 ## 📌 Notes
 - Built with ❤️ using Flutter
 - Follows Clean Architecture
