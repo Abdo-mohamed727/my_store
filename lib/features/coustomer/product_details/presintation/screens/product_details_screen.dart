@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/features/coustomer/cart/data/cart_item.dart';
+import 'package:my_store/features/coustomer/cart/presintation/bloc/cart/cart_cubit.dart';
 
 import '../../../../../core/app/di/injection_container.dart';
 import '../bloc/product_details_bloc.dart';
@@ -109,6 +111,18 @@ class ProductDetailsScreen extends StatelessWidget {
                         child: StickyAddToCartButton(
                           price: product.data.productModel.price!,
                           onAddPressed: () {
+                            sl<CartCubit>().addToCart(
+                              CartItem(
+                                productId: product.data.productModel.id,
+                                name: product.data.productModel.title!,
+                                price: product.data.productModel.price!
+                                    .toDouble(),
+                                imageUrl:
+                                    product.data.productModel.images?.first ??
+                                    '',
+                                quantity: 1,
+                              ),
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(

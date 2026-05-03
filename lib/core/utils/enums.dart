@@ -1,1 +1,1 @@
-enum MainTab { home, category, product, favorites, profile }
+enum MainTab { home, category, cart, favorites, profile }

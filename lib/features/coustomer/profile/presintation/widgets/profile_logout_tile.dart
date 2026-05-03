@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/core/style/colors/colors_dark.dart';
 import 'package:my_store/core/style/fonts/font_family.dart';
 import 'package:my_store/core/style/fonts/font_weight.dart';
 import 'package:my_store/features/coustomer/profile/data/models/profile_setting_item_model.dart';
