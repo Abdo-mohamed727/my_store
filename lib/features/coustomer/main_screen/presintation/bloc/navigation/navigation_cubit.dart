@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/features/coustomer/categories/presintation/screens/categories_screen.dart';
 import 'package:my_store/features/coustomer/favourite/presintation/screens/coustomer_favourite_screen.dart';
 import 'package:my_store/features/coustomer/home/presintation/screens/coustomer_home_page.dart';
-import 'package:my_store/features/coustomer/products/presintation/screens/coustomer_products_screen.dart';
+import 'package:my_store/features/coustomer/cart/presintation/screens/coustomer_cart_screen.dart';
 import 'package:my_store/features/coustomer/profile/presintation/screens/coustomer_profile_screen.dart';
 import '../../../../../../core/utils/enums.dart';
 
@@ -13,7 +13,7 @@ class NavigationCubit extends Cubit<MainTab> {
   final List<Widget> screens = const [
     CoustomerHomePage(),
     CategoriesScreen(),
-    CoustomerProductsScreen(),
+    CoustomerCartScreen(),
     CoustomerFavouriteScreen(),
     CoustomerProfileScreen(),
   ];

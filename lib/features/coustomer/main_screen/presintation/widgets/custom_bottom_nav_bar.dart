@@ -70,9 +70,9 @@ class _NavBarItem extends StatelessWidget {
         icon = isSelected ? Icons.category : Icons.category_outlined;
         label = 'Category';
         break;
-      case MainTab.product:
-        icon = isSelected ? Icons.shopping_bag : Icons.shopping_bag_outlined;
-        label = 'Product';
+      case MainTab.cart:
+        icon = isSelected ? Icons.shopping_cart : Icons.shopping_cart_outlined;
+        label = 'Cart';
         break;
       case MainTab.favorites:
         icon = isSelected ? Icons.favorite : Icons.favorite_outline;
