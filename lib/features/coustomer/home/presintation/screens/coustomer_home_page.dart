@@ -141,6 +141,8 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
           child: HomeHeader(
             onSearchTap: () =>
                 Navigator.pushNamed(context, AppRoutes.customerSearch),
+            onNotificationTap: () =>
+                Navigator.pushNamed(context, AppRoutes.notificationScreen),
           ),
         ),
 
