@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/app/di/injection_container.dart';
 import 'package:my_store/core/app/screens/undar_builder_screen.dart';
+import 'package:my_store/core/notification/screens/notificationscreen.dart';
 import 'package:my_store/core/routes/app_router.dart';
 import 'package:my_store/core/upload_image/cubit/cubit/upload_image_cubit.dart';
 import 'package:my_store/features/admin/home_admin/presintation/screen/admin_home_page.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String customerHomePage = 'Customer_home_page';
   static const String customerSearch = 'Customer_search_page';
   static const String productDetails = 'Product_details_page';
+  static const String notificationScreen = 'Notification_screen';
   static const String categoryProducts = 'Category_products_page';
 
   static Route<void>? onGenerateRoute(RouteSettings settings) {
@@ -44,15 +46,22 @@ class AppRoutes {
       case productDetails:
         final productId = settings.arguments as String? ?? '';
         return BaseRoute(page: ProductDetailsScreen(productId: productId));
-      
+      case notificationScreen:
+        return BaseRoute(page: const NotificationScreen());
       case categoryProducts:
         final args = settings.arguments as Map<String, dynamic>? ?? {};
         final categoryId = args['categoryId'] as int? ?? 0;
         final categoryName = args['categoryName'] as String? ?? '';
         return BaseRoute(
           page: BlocProvider(
-            create: (context) => sl<CategoryProductsBloc>()..add(CategoryProductsEvent.fetchProducts(categoryId: categoryId)),
-            child: CategoryProductsScreen(categoryId: categoryId, categoryName: categoryName),
+            create: (context) => sl<CategoryProductsBloc>()
+              ..add(
+                CategoryProductsEvent.fetchProducts(categoryId: categoryId),
+              ),
+            child: CategoryProductsScreen(
+              categoryId: categoryId,
+              categoryName: categoryName,
+            ),
           ),
         );
 
