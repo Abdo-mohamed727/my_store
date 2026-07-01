@@ -46,6 +46,10 @@ import 'package:my_store/features/coustomer/categories/presintation/bloc/categor
 import 'package:my_store/features/coustomer/cart/data/data_sources/local_cart_data_source.dart';
 import 'package:my_store/features/coustomer/cart/data/repositories/cart_repository_impl.dart';
 import 'package:my_store/features/coustomer/cart/presintation/bloc/cart/cart_cubit.dart';
+import 'package:my_store/core/services/hive/hive_database.dart';
+import 'package:my_store/features/coustomer/favourite/data/data_sources/local_favourite_data_source.dart';
+import 'package:my_store/features/coustomer/favourite/data/repositories/favourite_repository_impl.dart';
+import 'package:my_store/features/coustomer/favourite/presintation/bloc/favourite_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -62,6 +66,7 @@ Future<void> setupInjector() async {
   await _initCategoryProducts();
   await _initCustomerCategories();
   await _initCart();
+  await _initFavourite();
 }
 
 Future<void> _initcore() async {
@@ -175,4 +180,13 @@ Future<void> _initCart() async {
     ..registerLazySingleton<CartRepositoryImpl>(
       () => CartRepositoryImpl(localDataSource: sl()),
     );
+}
+
+Future<void> _initFavourite() async {
+  sl
+    ..registerLazySingleton<LocalFavouriteDataSource>(
+      () => LocalFavouriteDataSourceImpl(HiveDatabas.favouritesBox),
+    )
+    ..registerLazySingleton(() => FavouriteRepositoryImpl(sl()))
+    ..registerLazySingleton(() => FavouriteCubit(sl()));
 }

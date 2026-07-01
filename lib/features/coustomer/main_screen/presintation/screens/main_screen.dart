@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/core/app/di/injection_container.dart';
+import 'package:my_store/features/coustomer/favourite/presintation/bloc/favourite_cubit.dart';
 import '../bloc/navigation/navigation_cubit.dart';
 import '../../../../../../core/utils/enums.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
@@ -9,8 +13,18 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NavigationCubit(),
+    final favouriteCubit = sl<FavouriteCubit>();
+    unawaited(favouriteCubit.ensureLoaded());
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => NavigationCubit(),
+        ),
+        BlocProvider.value(
+          value: favouriteCubit,
+        ),
+      ],
       child: const MainScreenView(),
     );
   }
