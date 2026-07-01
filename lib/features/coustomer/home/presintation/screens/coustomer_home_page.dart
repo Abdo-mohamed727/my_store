@@ -1,17 +1,16 @@
-// share_plus sits alongside flutter packages in the same section; the linter
-// raises a false-positive directives_ordering warning for this file.
-// ignore_for_file: directives_ordering
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:share_plus/share_plus.dart';
 
 import 'package:my_store/core/app/di/injection_container.dart';
 import 'package:my_store/core/routes/app_routes.dart';
 import 'package:my_store/core/style/colors/colors_dark.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
+import 'package:my_store/features/coustomer/favourite/data/models/favourite_model.dart';
+import 'package:my_store/features/coustomer/favourite/presintation/bloc/favourite_cubit.dart';
+import 'package:my_store/features/coustomer/favourite/presintation/bloc/favourite_state.dart';
 import 'package:my_store/features/coustomer/home/data/models/product_category_model.dart';
 import 'package:my_store/features/coustomer/home/data/models/promo_banner_model.dart';
 import 'package:my_store/features/coustomer/home/presintation/bloc/home/home_cubit.dart';
@@ -75,13 +74,12 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
                   return state.when(
                     initial: () => const HomeShimmer(),
                     loading: () => const HomeShimmer(),
-                    loaded: (banners, categories, products, favoriteIds) =>
+                    loaded: (banners, categories, products, _) =>
                         _buildLoadedContent(
                           context,
                           banners: banners,
                           categories: categories,
                           products: products,
-                          favoriteIds: favoriteIds,
                         ),
                     error: (message) => HomeEmptyState(
                       message: message,
@@ -124,7 +122,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
     required List<PromoBannerModel> banners,
     required List<ProductCategoryModel> categories,
     required List<ProductGetAllModel> products,
-    required Set<String> favoriteIds,
   }) {
     if (products.isEmpty) {
       return HomeEmptyState(
@@ -136,7 +133,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
       controller: _scrollController,
       physics: const BouncingScrollPhysics(),
       slivers: [
-        // Header
         SliverToBoxAdapter(
           child: HomeHeader(
             onSearchTap: () =>
@@ -146,7 +142,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
           ),
         ),
 
-        // Promotional Banner Carousel
         if (banners.isNotEmpty)
           SliverToBoxAdapter(
             child: BannerCarousel(banners: List.from(banners)),
@@ -154,7 +149,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-        // Section Title: Categories
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -171,7 +165,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
         ),
         SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
-        // Categories Row
         if (categories.isNotEmpty)
           SliverToBoxAdapter(
             child: CategoryRow(categories: List.from(categories)),
@@ -179,7 +172,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-        // Section Title: Products
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -196,7 +188,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
         ),
         SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
-        // 2-Column Product Grid
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           sliver: SliverGrid(
@@ -209,19 +200,30 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 final product = products[index];
-                final isFav = favoriteIds.contains(product.id ?? '');
-                return ProductCard(
-                  product: product,
-                  isFavorite: isFav,
-                  onFavoriteToggle: () => context
-                      .read<HomeCubit>()
-                      .toggleFavorite(product.id ?? ''),
-                  onShare: () => _shareProduct(product),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRoutes.productDetails,
-                      arguments: product.id ?? '',
+                return BlocSelector<FavouriteCubit, FavouriteState, bool>(
+                  selector: (state) => state.maybeWhen(
+                    loaded: (_, favouriteProductIds) =>
+                        favouriteProductIds.contains(product.id ?? ''),
+                    orElse: () => false,
+                  ),
+                  builder: (context, isFav) {
+                    return ProductCard(
+                      product: product,
+                      isFavorite: isFav,
+                      onFavoriteToggle: () => unawaited(
+                        context.read<FavouriteCubit>().toggleFavourite(
+                          FavouriteModel.fromProduct(product),
+                        ),
+                      ),
+                      onTap: () {
+                        unawaited(
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.productDetails,
+                            arguments: product.id ?? '',
+                          ),
+                        );
+                      },
                     );
                   },
                 );
@@ -233,20 +235,6 @@ class _CoustomerHomePageState extends State<CoustomerHomePage> {
 
         SliverToBoxAdapter(child: SizedBox(height: 24.h)),
       ],
-    );
-  }
-
-  void _shareProduct(ProductGetAllModel product) {
-    final title = product.title ?? 'Check out this product';
-    final price = product.price ?? 0;
-    unawaited(
-      SharePlus.instance.share(
-        ShareParams(
-          text:
-              'Check out this product: $title '
-              'for \$${price.toStringAsFixed(0)}!',
-        ),
-      ),
     );
   }
 }

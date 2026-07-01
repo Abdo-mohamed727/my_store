@@ -10,7 +10,6 @@ class ProductCard extends StatelessWidget {
     required this.product,
     required this.isFavorite,
     required this.onFavoriteToggle,
-    required this.onShare,
     required this.onTap,
     super.key,
   });
@@ -18,7 +17,6 @@ class ProductCard extends StatelessWidget {
   final ProductGetAllModel product;
   final bool isFavorite;
   final VoidCallback onFavoriteToggle;
-  final VoidCallback onShare;
   final VoidCallback onTap;
 
   @override
@@ -87,16 +85,8 @@ class ProductCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          GestureDetector(
-            onTap: onShare,
-            child: Icon(
-              Icons.share_outlined,
-              color: ColorsDark.white,
-              size: 20.w,
-            ),
-          ),
           GestureDetector(
             onTap: onFavoriteToggle,
             child: AnimatedSwitcher(

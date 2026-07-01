@@ -1,6 +1,6 @@
-# my_store Development Guidelines
+﻿# my_store Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-05-03
+Auto-generated from all feature plans. Last updated: 2026-06-24
 
 ## Active Technologies
 - Dart / Flutter + `flutter_bloc`, `bloc`, `flutter_screenutil`, `get_it`, project theme extensions in `lib/core/style/` (004-profile-settings-screen)
@@ -11,6 +11,8 @@ Auto-generated from all feature plans. Last updated: 2026-05-03
 - In-memory local state (MVP) (007-cart-tab-integration)
 - Dart 3 / Flutter + flutter_bloc, freezed, json_serializable, hive, hive_flutter, get_it, flutter_screenutil (008-favorites-feature)
 - Hive local database (008-favorites-feature)
+- Dart 3.10.1 / Flutter + `flutter_bloc`, `freezed`, `json_serializable`, `get_it`, `flutter_screenutil`, `cached_network_image`, `hive`, `hive_flutter` (010-add-favourite)
+- Hive local database, one favourites box keyed by product id (010-add-favourite)
 
 - Dart / Flutter + `flutter_bloc`, `bloc`, `freezed`, `json_serializable`, `cached_network_image`, `flutter_screenutil`, `get_it` (003-product-details)
 
@@ -30,6 +32,7 @@ tests/
 Dart / Flutter: Follow standard conventions
 
 ## Recent Changes
+- 010-add-favourite: Added Dart 3.10.1 / Flutter + `flutter_bloc`, `freezed`, `json_serializable`, `get_it`, `flutter_screenutil`, `cached_network_image`, `hive`, `hive_flutter`
 - 008-favorites-feature: Added Dart 3 / Flutter + flutter_bloc, freezed, json_serializable, hive, hive_flutter, get_it, flutter_screenutil
 - 007-cart-tab-integration: Added Dart 3 + `flutter_bloc`, `freezed`, `get_it`, `flutter_screenutil`
 

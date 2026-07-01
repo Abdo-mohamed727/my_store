@@ -24,18 +24,4 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeState.error(e.toString()));
     }
   }
-
-  void toggleFavorite(String productId) {
-    state.mapOrNull(
-      loaded: (loaded) {
-        final updated = Set<String>.from(loaded.favoriteProductIds);
-        if (updated.contains(productId)) {
-          updated.remove(productId);
-        } else {
-          updated.add(productId);
-        }
-        emit(loaded.copyWith(favoriteProductIds: updated));
-      },
-    );
-  }
 }

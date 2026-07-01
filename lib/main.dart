@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:my_store/core/app/bloc_observation.dart';
 import 'package:my_store/core/app/di/injection_container.dart';
 import 'package:my_store/core/app/env_variables.dart';
-import 'package:my_store/core/notification/services/local_notification_services.dart';
-import 'package:my_store/core/notification/services/push_notification_services.dart';
+ 
 import 'package:my_store/core/services/shared_pref/share_pref.dart';
 import 'package:my_store/firebase_options.dart';
 import 'package:my_store/my_store_app.dart';
@@ -31,6 +30,7 @@ void main() async {
     debugPrint(st.toString());
   }
   await SharedPref().instantiatePreferences();
+  await HiveDatabas.init();
   await setupInjector();
 
   Bloc.observer = AppBlocObserver();
