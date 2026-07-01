@@ -3,9 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/style/colors/colors_dark.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key, required this.onSearchTap});
+  const HomeHeader({
+    required this.onNotificationTap,
+    super.key,
+    required this.onSearchTap,
+  });
 
   final VoidCallback onSearchTap;
+  final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class HomeHeader extends StatelessWidget {
             'Choose Your Products',
             style: TextStyle(
               color: ColorsDark.white,
-              fontSize: 22.sp,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w700,
               fontFamily: 'Poppins',
             ),
@@ -26,14 +31,30 @@ class HomeHeader extends StatelessWidget {
           GestureDetector(
             onTap: onSearchTap,
             child: Container(
-              width: 44.w,
-              height: 44.h,
+              width: 40.w,
+              height: 40.h,
               decoration: BoxDecoration(
                 color: ColorsDark.blueDark,
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Icon(
                 Icons.search_rounded,
+                color: ColorsDark.white,
+                size: 22.w,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: onNotificationTap,
+            child: Container(
+              width: 40.w,
+              height: 40.h,
+              decoration: BoxDecoration(
+                color: ColorsDark.blueDark,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Icon(
+                Icons.notifications,
                 color: ColorsDark.white,
                 size: 22.w,
               ),
