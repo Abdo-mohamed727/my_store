@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/app/dialogs/custom_dialog.dart';
+import 'package:my_store/core/routes/app_routes.dart';
+import 'package:my_store/core/services/shared_pref/share_keys.dart';
+import 'package:my_store/core/services/shared_pref/share_pref.dart';
 import 'package:my_store/core/style/fonts/font_family.dart';
 import 'package:my_store/core/style/fonts/font_weight.dart';
 import 'package:my_store/features/coustomer/profile/data/models/profile_setting_item_model.dart';
@@ -15,7 +19,24 @@ class ProfileLogoutTile extends StatelessWidget {
       padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
       child: InkWell(
         onTap: () {
-          // Logout logic will be implemented later
+          CustomDialog.twoButtonDialog(
+            context: context,
+            textBody: 'Are you sure you want to log out?',
+            textButton1: 'Yes',
+            textButton2: 'No',
+            isLoading: false,
+
+            onPressed: () async {
+              final navigator = Navigator.of(context);
+              await SharedPref().removePreference(ShareKeys.accesstoken);
+              await SharedPref().removePreference(ShareKeys.refreshtoken);
+              await SharedPref().removePreference(ShareKeys.userId);
+              await navigator.pushNamedAndRemoveUntil(
+                AppRoutes.loginpage,
+                (route) => false,
+              );
+            },
+          );
         },
         borderRadius: BorderRadius.circular(16.r),
         child: Container(
