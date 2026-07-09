@@ -1,8 +1,12 @@
+// share_plus sits alongside flutter packages in the same section; the linter
+// raises a false-positive directives_ordering warning for this file.
+// ignore_for_file: directives_ordering
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:my_store/core/app/di/injection_container.dart';
 import 'package:my_store/core/routes/app_routes.dart';

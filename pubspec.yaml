@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
   firebase_core: ^4.4.0
- 
+  firebase_messaging: ^16.4.1
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -89,9 +89,7 @@ flutter:
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
 
-#
 # For details regarding fonts from package dependencies,
 # see https://flutter.dev/to/font-from-package
-
 dependency_overrides:
   win32: ^5.5.0
