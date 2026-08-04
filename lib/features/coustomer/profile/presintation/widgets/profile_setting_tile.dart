@@ -96,7 +96,7 @@ class _TrailingView extends StatelessWidget {
               Text(
                 displayValue,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.white.withValues(alpha: .88),
+                  color: ColorsDark.white.withValues(alpha: .88),
                   fontFamily: FontFamily.poppinsEnglish,
                 ),
               ),

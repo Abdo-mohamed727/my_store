@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/features/coustomer/cart/data/cart_item.dart';
 import 'package:my_store/features/coustomer/cart/presintation/bloc/cart/cart_cubit.dart';
@@ -26,7 +27,7 @@ class ProductDetailsScreen extends StatelessWidget {
       create: (context) => sl<ProductDetailsBloc>()
         ..add(ProductDetailsEvent.fetchProductDetails(productId: productId)),
       child: Scaffold(
-        backgroundColor: const Color(0xFF1B1D28),
+        backgroundColor: ColorsDark.mainColor,
         body: ProductDetailsBackground(
           child: SafeArea(
             bottom: false,
@@ -43,7 +44,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Error: $message',
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: ColorsDark.white),
                         ),
                         SizedBox(height: 16.h),
                         ElevatedButton(
@@ -85,7 +86,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.white,
+                                          color: ColorsDark.white,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -128,7 +129,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                 content: Text(
                                   '${product.data.productModel.title} added to cart!',
                                 ),
-                                backgroundColor: const Color(0xFF3AC6F4),
+                                backgroundColor: ColorsDark.blueLight,
                               ),
                             );
                           },

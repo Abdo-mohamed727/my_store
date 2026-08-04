@@ -22,7 +22,7 @@ class ProfileHeaderSection extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 58.r,
-          backgroundColor: Colors.white,
+          backgroundColor: ColorsDark.white,
           backgroundImage: summary.avatar == null
               ? null
               : NetworkImage(summary.avatar!),
@@ -43,7 +43,7 @@ class ProfileHeaderSection extends StatelessWidget {
         Text(
           summary.email ?? 'Contact info unavailable',
           style: textTheme.titleMedium?.copyWith(
-            color: isFallback ? Colors.white70 : ColorsDark.white,
+            color: isFallback ? ColorsDark.white.withOpacity(0.7) : ColorsDark.white,
             fontFamily: FontFamily.poppinsEnglish,
           ),
         ),

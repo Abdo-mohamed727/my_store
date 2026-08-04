@@ -35,8 +35,8 @@ class _HomePainter extends CustomPainter {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF28A8E4),
-              Color(0xFF4567E8),
+              ColorsDark.blueLight,
+              ColorsDark.blueDark,
             ],
           ).createShader(
             Rect.fromLTWH(
@@ -53,7 +53,7 @@ class _HomePainter extends CustomPainter {
       ..shader =
           RadialGradient(
             colors: [
-              Colors.white.withOpacity(0.10),
+              ColorsDark.blueLight.withOpacity(0.10),
               Colors.transparent,
             ],
           ).createShader(

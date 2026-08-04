@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 
 class StickyAddToCartButton extends StatelessWidget {
   final double price;
@@ -16,7 +17,7 @@ class StickyAddToCartButton extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
       decoration: BoxDecoration(
-        color: const Color(0xFF242735),
+        color: ColorsDark.black2,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24.r),
           topRight: Radius.circular(24.r),
@@ -31,7 +32,7 @@ class StickyAddToCartButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xFF13D2F0), // Cyan text
+                color: ColorsDark.blueLight,
               ),
             ),
             InkWell(
@@ -45,8 +46,8 @@ class StickyAddToCartButton extends StatelessWidget {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [
-                      Color(0xFF4C5BF8), // Blue
-                      Color(0xFF1CD5ED), // Cyan
+                      ColorsDark.blueDark,
+                      ColorsDark.blueLight,
                     ],
                   ),
                 ),
@@ -55,7 +56,7 @@ class StickyAddToCartButton extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: ColorsDark.mainColor,
                   ),
                 ),
               ),

@@ -19,7 +19,7 @@ class CustomerSearchScreen extends StatelessWidget {
             fontFamily: 'Poppins',
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: ColorsDark.white),
       ),
       body: Center(
         child: Column(
