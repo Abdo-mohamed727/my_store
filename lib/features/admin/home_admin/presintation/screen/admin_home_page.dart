@@ -66,7 +66,7 @@ class MenuAdminScreen extends StatelessWidget {
                     title: e.title,
                     leading: Icon(
                       e.icon,
-                      color: Colors.white,
+                      color: ColorsDark.white,
                     ),
                   ),
                 )

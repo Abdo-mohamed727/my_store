@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import '../bloc/navigation/navigation_cubit.dart';
 import '../../../../../../core/utils/enums.dart';
 
@@ -17,7 +18,7 @@ class CustomBottomNavBar extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: ColorsDark.mainColor.withOpacity(0.1),
                 blurRadius: 10,
                 offset: const Offset(0, -5),
               ),
@@ -84,8 +85,8 @@ class _NavBarItem extends StatelessWidget {
         break;
     }
 
-    final activeColor = Theme.of(context).primaryColor;
-    final inactiveColor = Colors.grey;
+    final activeColor = ColorsDark.blueLight;
+    final inactiveColor = ColorsDark.white.withOpacity(0.4);
 
     return GestureDetector(
       onTap: onTap,

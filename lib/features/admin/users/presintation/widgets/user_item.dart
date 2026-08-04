@@ -27,7 +27,7 @@ class UserItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: ColorsDark.mainColor.withOpacity(0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -41,7 +41,7 @@ class UserItem extends StatelessWidget {
             child: Text(
               user.name?.isNotEmpty == true ? user.name![0].toUpperCase() : '?',
               style: context.textStyle.copyWith(
-                color: Colors.white,
+                color: ColorsDark.white,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
               ),

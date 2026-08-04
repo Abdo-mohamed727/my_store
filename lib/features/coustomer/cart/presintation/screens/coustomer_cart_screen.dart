@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/app/di/injection_container.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import '../bloc/cart/cart_cubit.dart';
 import '../bloc/cart/cart_state.dart';
 import '../widgets/cart_item_tile.dart';
@@ -14,14 +15,14 @@ class CoustomerCartScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<CartCubit>()..loadCart(),
       child: Scaffold(
-        backgroundColor: const Color(0xFF1B1D28),
+        backgroundColor: ColorsDark.mainColor,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
             'My Cart',
             style: TextStyle(
-              color: Colors.white,
+              color: ColorsDark.white,
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -36,7 +37,7 @@ class CoustomerCartScreen extends StatelessWidget {
               error: (message) => Center(
                 child: Text(
                   'Error: $message',
-                  style: const TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.redAccent),
                 ),
               ),
               loaded: (items, totalPrice) {
@@ -81,13 +82,13 @@ class CoustomerCartScreen extends StatelessWidget {
           Icon(
             Icons.shopping_cart_outlined,
             size: 100.w,
-            color: Colors.grey[600],
+            color: ColorsDark.white.withOpacity(0.3),
           ),
           SizedBox(height: 24.h),
           Text(
             'Your cart is empty',
             style: TextStyle(
-              color: Colors.white,
+              color: ColorsDark.white,
               fontSize: 22.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -97,7 +98,7 @@ class CoustomerCartScreen extends StatelessWidget {
             'Looks like you haven\'t added\nanything to your cart yet',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.grey[400],
+              color: ColorsDark.white.withOpacity(0.5),
               fontSize: 16.sp,
             ),
           ),
@@ -110,7 +111,7 @@ class CoustomerCartScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF282A3A),
+        color: ColorsDark.black1,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24.r),
           topRight: Radius.circular(24.r),
@@ -126,14 +127,14 @@ class CoustomerCartScreen extends StatelessWidget {
                 Text(
                   'Total',
                   style: TextStyle(
-                    color: Colors.grey[400],
+                    color: ColorsDark.white.withOpacity(0.5),
                     fontSize: 16.sp,
                   ),
                 ),
                 Text(
                   '\$${totalPrice.toStringAsFixed(2)}',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: ColorsDark.white,
                     fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -149,7 +150,7 @@ class CoustomerCartScreen extends StatelessWidget {
                   // Checkout logic placeholder
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3AC6F4),
+                  backgroundColor: ColorsDark.blueLight,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.r),
                   ),
@@ -159,7 +160,7 @@ class CoustomerCartScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: ColorsDark.mainColor,
                   ),
                 ),
               ),

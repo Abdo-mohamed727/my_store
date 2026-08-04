@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import '../../data/cart_item.dart';
 
 class CartItemTile extends StatelessWidget {
@@ -19,11 +20,11 @@ class CartItemTile extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF282A3A),
+        color: ColorsDark.black1,
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: ColorsDark.mainColor.withOpacity(0.2),
             blurRadius: 10,
             offset: const Offset(0, 5),
           ),
@@ -41,14 +42,14 @@ class CartItemTile extends StatelessWidget {
               placeholder: (context, url) => Container(
                 width: 80.w,
                 height: 80.w,
-                color: Colors.grey[800],
+                color: ColorsDark.black2,
                 child: const Center(child: CircularProgressIndicator()),
               ),
               errorWidget: (context, url, error) => Container(
                 width: 80.w,
                 height: 80.w,
-                color: Colors.grey[800],
-                child: const Icon(Icons.error, color: Colors.white),
+                color: ColorsDark.black2,
+                child: const Icon(Icons.error, color: ColorsDark.white),
               ),
             ),
           ),
@@ -60,7 +61,7 @@ class CartItemTile extends StatelessWidget {
                 Text(
                   item.name,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: ColorsDark.white,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -71,7 +72,7 @@ class CartItemTile extends StatelessWidget {
                 Text(
                   '\$${item.price.toStringAsFixed(2)}',
                   style: TextStyle(
-                    color: const Color(0xFF3AC6F4),
+                    color: ColorsDark.blueLight,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -80,7 +81,7 @@ class CartItemTile extends StatelessWidget {
                 Text(
                   'Qty: ${item.quantity}',
                   style: TextStyle(
-                    color: Colors.grey[400],
+                    color: ColorsDark.white.withOpacity(0.5),
                     fontSize: 12.sp,
                   ),
                 ),

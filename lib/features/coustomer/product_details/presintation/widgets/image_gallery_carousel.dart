@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import 'package:my_store/features/admin/add_products/data/models/get_all_products_response.dart';
 
 class ImageGalleryCarousel extends StatefulWidget {
@@ -26,7 +27,7 @@ class _ImageGalleryCarouselState extends State<ImageGalleryCarousel> {
           width: 300.w,
           height: 300.w,
           decoration: BoxDecoration(
-            color: const Color(0xFFE2E2E2),
+            color: ColorsDark.black1,
             borderRadius: BorderRadius.circular(16.r),
           ),
           clipBehavior: Clip.antiAlias,
@@ -61,8 +62,8 @@ class _ImageGalleryCarouselState extends State<ImageGalleryCarousel> {
                 width: 24.w,
                 decoration: BoxDecoration(
                   color: _currentIndex == index
-                      ? const Color(0xFF13D2F0)
-                      : Colors.grey.withOpacity(0.5),
+                      ? ColorsDark.blueLight
+                      : ColorsDark.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(2.r),
                 ),
               ),

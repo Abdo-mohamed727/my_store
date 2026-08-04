@@ -84,11 +84,11 @@ class _CategoriesContent extends StatelessWidget {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ColorsDark.black1,
                       borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: ColorsDark.mainColor.withOpacity(0.1),
                           blurRadius: 10,
                           offset: const Offset(0, 5),
                         ),
@@ -148,7 +148,7 @@ class _CategoriesContent extends StatelessWidget {
                   width: 120.w,
                   child: const Text(
                     'Retry',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: ColorsDark.white),
                   ),
                 ),
               ],

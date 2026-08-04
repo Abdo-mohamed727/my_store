@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 import 'package:shimmer/shimmer.dart';
 
 class AppImageShimmer extends StatelessWidget {
   const AppImageShimmer({
     super.key,
-    this.baseColor = const Color(0xFF3B465D),
-    this.highlightColor = const Color(0x1FFFFFFF),
-    this.backgroundColor = const Color(0xFF2F384D),
+    this.baseColor = ColorsDark.black1,
+    this.highlightColor = const Color(0x1FFFFBF0),
+    this.backgroundColor = ColorsDark.black2,
   });
 
   final Color baseColor;

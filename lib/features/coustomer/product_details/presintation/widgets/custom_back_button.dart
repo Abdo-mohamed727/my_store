@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({Key? key}) : super(key: key);
@@ -18,14 +19,14 @@ class CustomBackButton extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF3AC6F4), // Cyan
-              Color(0xFF3B48F6), // Blue
+              ColorsDark.blueLight,
+              ColorsDark.blueDark,
             ],
           ),
         ),
         child: Icon(
           Icons.arrow_back_ios_new,
-          color: Colors.white,
+          color: ColorsDark.mainColor,
           size: 18.sp,
         ),
       ),

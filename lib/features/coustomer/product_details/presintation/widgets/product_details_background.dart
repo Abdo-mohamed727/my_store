@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/core/style/colors/colors_dark.dart';
 
 class ProductDetailsBackground extends StatelessWidget {
   final Widget child;
@@ -10,15 +11,15 @@ class ProductDetailsBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFF1B1D28),
+        color: ColorsDark.mainColor,
         gradient: LinearGradient(
           begin: Alignment(1.0, 1.0), // Bottom Right
           end: Alignment(-1.0, -1.0), // Top Left
           stops: [0.0, 0.45, 0.45],
           colors: [
-            Color(0xFF3B48F6), // Strong Blue
-            Color(0xFF3B48F6),
-            Color(0xFF1B1D28), // Dark Gray Blue
+            ColorsDark.blueDark, // Dark Gold accent
+            ColorsDark.blueDark,
+            ColorsDark.mainColor, // Deep Navy
           ],
         ),
       ),
